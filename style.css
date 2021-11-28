@@ -42,3 +42,8 @@
     align-items: center;
     justify-content: space-evenly;
 }
+
+.menu-item:hover{
+    cursor:pointer;
+    color:white;
+}
