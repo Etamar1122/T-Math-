@@ -1,4 +1,4 @@
 $('#home').click(function(){
     console.log('check')
-    $('#content').attr('src','index.html');
+   window.location.replace('login.html')
 })
