@@ -1,4 +1,4 @@
-<h1>T-Math</h1>
+<h1>T-Math - interactive math learning through web games.</h1>
 <div>
   <h2>introduction</h2>
   <h5> T-Math is an SCE college project with the pourpse to make math learning easy and fun, with interactive trivia game and humble educational prizes. </h5>
