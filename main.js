@@ -16,3 +16,11 @@ $('#fast_start').click(function(){
     window.location.replace('Chooselvl.html')
 })
 
+
+$('#selector').on("change", function(){
+    var value = $(this).val()
+    $('#your_choise').replaceWith(`<p id='your_choise'>הבחירה שלך היא: ${value}</p>`)
+})
+
+
+
