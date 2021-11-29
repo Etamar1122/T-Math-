@@ -3,7 +3,6 @@
   <h3>introduction</h3>
   <h5> T-Math is an SCE college project with the pourpse to make math learning easy and fun, with interactive trivia game and humble educational prizes. </h5>
   
-  <br>
   <h3> Instructions </h3>
     <p> As for this stage of the development, we have some functional buttons and charts, we do not have any complex functions or game yet, its is just the early stages of the          development. </p
       ><br>
