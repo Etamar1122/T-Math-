@@ -1,6 +1,6 @@
 <h2>T-Math</h2>
 <div>
-  <h3>intreduction</h3>
+  <h3>introduction</h3>
   <h5> T-Math is an SCE college project with the pourpse to make math learning easy and fun, with interactive trivia game and humble educational prizes. </h5>
   
   <br>
