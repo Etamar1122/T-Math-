@@ -1,33 +1,50 @@
-import { initializeApp } from "/app";
-import { getDatabase } from "firebase/database";
+$("#registration_form").on('submit', (e)=>{
+  e.preventDefault();
+  
+ 
+ function get_user_data(){
+  $.ajax({
+      url:"https://t-math-t-default-rtdb.europe-west1.firebasedatabase.app/users.json",
+      method:"GET",
+      beforeSend:function(){
+        alert("YA");
+      },
+      success: function(res){
+        console.log(res);
+        return res;
+      }
+    });
+  } 
 
-// Set the configuration for your app
-// TODO: Replace with your project's config object
-const firebaseConfig = {
-    apiKey: "AIzaSyDsG6NfzGL4Pw4-G3SL9nK6fKYUd2d72sA",
-    authDomain: "t-math-sce.firebaseapp.com",
-    projectId: "t-math-sce",
-    storageBucket: "t-math-sce.appspot.com",
-    messagingSenderId: "376165570519",
-    appId: "1:376165570519:web:45b29b2afd596148441d92",
-    measurementId: "G-B87RCJXCWP"
-}
-const app = initializeApp(firebaseConfig);
-// Get a reference to the database service
-const database = getDatabase(app);
+  let users_json =  get_user_data()
+  
 
+   if(JSON.parse(users_json).filter(function (i,n){ return n.email === "etamar1122@gmail.com";}))
+      {
+        console.log("alreadyExists!"); 
+        return 0; 
+      };
 
-console.log('index loaded')
-function writeUserData(userId, name, email, role) {
-  const db = getDatabase();
-  set(ref(db, 'users/' + userId), {
-    username: name,
-    email: email,
-    role: role
-  });
-}
-
-writeUserData(10,'shay','etamar@gmail.com','admin');
-
-
-
+  $.ajax({
+      url: "https://t-math-t-default-rtdb.europe-west1.firebasedatabase.app/users.json",
+      method:"POST",
+      crossDomain: true,
+      data: JSON.stringify({
+          user_name: $('#first_name').val(),
+          last_name:$('#last_name').val(),
+          email:$('#email').val(),
+          password:$('#password').val()
+      }),
+      contentType:"json",
+      beforeSend:function(){
+            alert("YA");
+          },
+      success: function(res){
+        console.log(res);
+      },
+      error: function(res){
+        console.log(res)
+      }
+      
+  })
+})

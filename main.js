@@ -15,12 +15,14 @@ $('#fast_start').click(function(){
     console.log('check')
     window.location.replace('Chooselvl.html')
 })
-
-
-$('#selector').on("change", function(){
-    var value = $(this).val()
-    $('#your_choise').replaceWith(`<p id='your_choise'>הבחירה שלך היא: ${value}</p>`)
+$('#fast_start').click(function(){
+    console.log('check')
+    window.location.replace('Chooselvl.html')
 })
 
+$('#prize-shop').click(function(){
+    console.log('check')
+    window.location.replace('login.html')
+})
 
 
