@@ -2,49 +2,76 @@ $("#registration_form").on('submit', (e)=>{
   e.preventDefault();
   
  
- function get_user_data(){
-  $.ajax({
-      url:"https://t-math-t-default-rtdb.europe-west1.firebasedatabase.app/users.json",
-      method:"GET",
-      beforeSend:function(){
-        alert("YA");
+  async function get_user_data(){
+    let userData = null;
+    userData = await $.get({
+      url: "https://t-math-t-default-rtdb.europe-west1.firebasedatabase.app/users.json",
+      success: function(data) {
+        return data;
+        //console.log(data) // Resolve promise and go to then()
       },
-      success: function(res){
-        console.log(res);
-        return res;
+      error: function(err) {
+        console.log(err) // Reject the promise and go to catch()
       }
     });
-  } 
-
-  let users_json =  get_user_data()
-  
-
-   if(JSON.parse(users_json).filter(function (i,n){ return n.email === "etamar1122@gmail.com";}))
-      {
-        console.log("alreadyExists!"); 
-        return 0; 
-      };
-
-  $.ajax({
-      url: "https://t-math-t-default-rtdb.europe-west1.firebasedatabase.app/users.json",
-      method:"POST",
-      crossDomain: true,
-      data: JSON.stringify({
-          user_name: $('#first_name').val(),
-          last_name:$('#last_name').val(),
-          email:$('#email').val(),
-          password:$('#password').val()
-      }),
-      contentType:"json",
-      beforeSend:function(){
-            alert("YA");
+    return userData;
+  }
+    var flag = false;
+    const start = async function() {
+      const result = await get_user_data();
+      $.each(result, function(i,val){if(val["email"] === user_email){alert("error!"); flag = true}})
+      if(flag != true){
+        $.ajax({
+          url: "https://t-math-t-default-rtdb.europe-west1.firebasedatabase.app/users.json",
+          method:"POST",
+          crossDomain: true,
+          data: JSON.stringify({
+              user_name: $('#first_name').val(),
+              last_name:$('#last_name').val(),
+              email:$('#email').val(),
+              password:$('#password').val()
+          }),
+          contentType:"json",
+          beforeSend:function(){
+                alert("YA");
+              },
+          success: function(res){
+            console.log(res);
           },
-      success: function(res){
-        console.log(res);
-      },
-      error: function(res){
-        console.log(res)
+          error: function(res){
+            console.log(res)
+          }
+        })
+      }else {
+        flag = false;
+        return;
       }
-      
-  })
+    }
+    
+    start();
+    var user_email = $('#email').val();
+
+  // if(flag != true){
+  //   $.ajax({
+  //       url: "https://t-math-t-default-rtdb.europe-west1.firebasedatabase.app/users.json",
+  //       method:"POST",
+  //       crossDomain: true,
+  //       data: JSON.stringify({
+  //           user_name: $('#first_name').val(),
+  //           last_name:$('#last_name').val(),
+  //           email:$('#email').val(),
+  //           password:$('#password').val()
+  //       }),
+  //       contentType:"json",
+  //       beforeSend:function(){
+  //             alert("YA");
+  //           },
+  //       success: function(res){
+  //         console.log(res);
+  //       },
+  //       error: function(res){
+  //         console.log(res)
+  //       }
+  //     })
+  //   }
 })
