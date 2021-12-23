@@ -2,6 +2,10 @@
 
 const registration_form = $("#registration_form");
 const login_form = $("#login_form");
+// TODO:
+// add get_currect_user func to find a user depends on its cookie key.
+//
+
 
 registration_form.on('submit', (e) =>{
     e.preventDefault();
