@@ -5,7 +5,6 @@ const login_form = $("#login_form");
 
 registration_form.on('submit', (e) =>{
     e.preventDefault();
-    console.log("works fine2")
     register_user();
 })
 
@@ -56,7 +55,7 @@ async function user_authentication(){
                     password,
                 })
             })
-            .then(res => { Cookies.set('user-token',res.token) })
+            .then(res => { Cookies.set('user-token',res.token); alert('Login successfully.') })
         } catch (error){ 
             alert(JSON.parse(error.responseText).message);
         }
