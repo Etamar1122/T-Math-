@@ -5,6 +5,7 @@
     "express": "^4.17.2",
     "firebase": "^9.6.0",
     "jconfirm": "^4.5.3",
+    "js-cookie": "^3.0.1",
     "mysql2": "^2.3.3",
     "nodejs": "^0.0.0",
     "nodemon": "^2.0.15",
