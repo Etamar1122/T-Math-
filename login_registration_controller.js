@@ -13,7 +13,6 @@ registration_form.on('submit', (e) =>{
     async function register_user(){
         const firstName = $('#first_name').val();
         const lastName = $('#last_name').val();
-        const username = firstName;
         const email = $('#email').val();
         const password = ($('#password').val())
         const role = "student";
@@ -27,8 +26,7 @@ registration_form.on('submit', (e) =>{
                 data: JSON.stringify({
                     firstName,
                     lastName,
-                    username,
-                    // email,
+                    email,
                     password,
                     role,
                     score
