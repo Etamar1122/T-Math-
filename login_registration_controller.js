@@ -1,30 +1,69 @@
 
+
 const registration_form = $("#registration_form");
+const login_form = $("#login_form");
+// TODO:
+// add get_currect_user func to find a user depends on its cookie key.
+//
+
+
 registration_form.on('submit', (e) =>{
     e.preventDefault();
-    console.log("works fine2")
-    register_user()
+    register_user();
+})
+
+login_form.on('submit', (e) =>{
+    e.preventDefault();
+    user_authentication();  
 })
 
 async function register_user(){
-    const first_name = $('#first_name').val();
-    const last_name = $('#last_name').val();
+    const firstName = $('#first_name').val();
+    const lastName = $('#last_name').val();
     const email = $('#email').val();
     const password = ($('#password').val())
-    console.log("first_name", first_name)
-    console.log("works fine")
-
-    const result = await fetch('http://localhost:5500/api/register', {
-        method: "POST",
-        headers: {
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-            first_name,
-            last_name,
-            email,
-            password
+    const role = "student";
+    const score = '0';
+    try{
+        const result = await $.ajax({
+            url:'http://localhost:4000/users/register',
+            method: "POST",
+            contentType:'application/json',
+            data: JSON.stringify({
+                firstName,
+                lastName,
+                email,
+                password,
+                role,
+                score
+            })
         })
-    }).then(res => res)
-    console.log(result)
+        .then(res => {console.log(res)})
+    } catch (error){
+        alert(JSON.parse(error.responseText).message);
+    }
+}
+
+
+async function user_authentication(){
+    if (Cookies.get('user-token') == null){
+        const email = $('#email_login').val();
+        const password = ($('#password_login').val())
+        try{
+            const result = await $.ajax({
+                url:'http://localhost:4000/users/authenticate',
+                method: "POST",
+                contentType:'application/json',
+                data: JSON.stringify({
+                    email,
+                    password,
+                })
+            })
+            .then(res => { Cookies.set('user-token',res.token); alert('Login successfully.') })
+        } catch (error){ 
+            alert(JSON.parse(error.responseText).message);
+        }
+    }else{
+        alert('user is allready logged in!')
+    }
 }
