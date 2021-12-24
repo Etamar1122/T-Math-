@@ -3,4 +3,15 @@ body::before {
     content: '';
     height: 60px;
   }
+
+  body {
+    height: 100%;
+  }
+  
+  .user-fields{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+  }
+
   
