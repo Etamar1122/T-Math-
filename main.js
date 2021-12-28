@@ -25,4 +25,7 @@ $('#prize-shop').click(function(){
     window.location.replace('login.html')
 })
 
-
+$('#New_question_button').click(function(){
+    console.log('check')
+    $('#new_question_form').css('display', 'block')
+})
