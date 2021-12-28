@@ -6,6 +6,9 @@ const login_form = $("#login_form");
 // add get_currect_user func to find a user depends on its cookie key.
 //
 
+async function get_user(user_token){
+
+}
 
 registration_form.on('submit', (e) =>{
     e.preventDefault();
@@ -38,7 +41,7 @@ async function register_user(){
                 score
             })
         })
-        .then(res => {console.log(res)})
+        .then(res => {JSON.parse(res.responseText).message})
     } catch (error){
         alert(JSON.parse(error.responseText).message);
     }
@@ -46,7 +49,7 @@ async function register_user(){
 
 
 async function user_authentication(){
-    if (Cookies.get('user-token') == null){
+    if (Cookies.get('user-id') == null){
         const email = $('#email_login').val();
         const password = ($('#password_login').val())
         try{
@@ -59,11 +62,41 @@ async function user_authentication(){
                     password,
                 })
             })
-            .then(res => { Cookies.set('user-token',res.token); alert('Login successfully.') })
+            .then(res => { 
+                    Cookies.set('user-id',res.id);
+                    alert('Login successfully.');
+                })
         } catch (error){ 
             alert(JSON.parse(error.responseText).message);
         }
     }else{
         alert('user is allready logged in!')
     }
+}
+async function get_user_role(){
+    if (Cookies.get('user-id') != null){
+
+        try{
+            const result = await $.ajax({
+                url:'http://localhost:4000/users/'+Cookies.get('user-id'),
+                method: "GET",
+                 headers: {
+                    "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY0MDY5MDMxNywiZXhwIjoxNjQxMjk1MTE3fQ.1gIf9c_Yw2Szkh3coNyhJSEuZ_d8HzBdjsDpizGgUHc"
+                 },
+                contentType:'application/json',
+                   success: function(res){console.log (res.role)}
+            })
+        } catch (error){ 
+            alert(JSON.parse(error.responseText).message);
+        }
+    }else{
+        alert('user is allready logged in!')
+    }
+}
+
+function is_logged_in(){
+    if(Cookies.get('user-id')){
+        return true;
+    }
+    return false;
 }
