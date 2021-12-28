@@ -30,15 +30,17 @@ $('#New_question_button').click(function(){
     $('#new_question_form').css('display', 'block')
 })
 
-const username = get_user_field('user_name')
+const username = await get_user_field('user_name')
+console.log(username)
 const str = `hello ${username}`
 if (is_logged_in()){
-   $('#navmenu').append(str)
+   $('#navmenu').append(`<p>${str}</p>`)
 }
+
 $(window).on('load',async ()=>{
     var result = await get_user_field('role');
     console.log('user-role', result)
-    if(window.location.pathnmae = '/forTeacher.html/'){
+    if(window.location.pathnmae == '/forTeacher.html/'){
         if(await  get_user_field('role') == 'student'){
             window.location.replace('/index.html');
         }

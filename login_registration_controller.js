@@ -76,9 +76,9 @@ function user_fields_dict(field_name, res){
     if(field_name == 'role'){
         return res.role;
     }else if(field_name == 'first_name'){
-        return res.first_name;
+        return res.firstName;
     }else if(field_name == 'last_name'){
-        return res.last_name;
+        return res.lastName;
     }else if(field_name == 'email'){
         return res.email;
     }else if(field_name == 'score'){
@@ -112,3 +112,25 @@ function is_logged_in(){
     }
     return false;
 }
+
+async function get_user_field(field_name){
+    if (Cookies.get('user-id') != null){
+        try{
+            const result = await $.ajax({
+                url:'http://localhost:4000/users/'+Cookies.get('user-id'),
+                method: "GET",
+                 headers: {
+                    "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY0MDY5MDMxNywiZXhwIjoxNjQxMjk1MTE3fQ.1gIf9c_Yw2Szkh3coNyhJSEuZ_d8HzBdjsDpizGgUHc"
+                 },
+                contentType:'application/json',
+            }).then((res)=>{ return user_fields_dict(field_name, res)});
+            return result
+        } catch (error){ 
+            alert(JSON.parse(error.responseText).message);
+        }
+    }else{
+        alert('user is not logged in!')
+    }
+}
+ // TODO get_users functio for all db user for tables.
+ // TODO db for questions. and db functions.
