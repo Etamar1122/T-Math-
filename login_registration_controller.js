@@ -72,9 +72,22 @@ async function user_authentication(){
         alert('user is allready logged in!')
     }
 }
-async function get_user_role(){
-    if (Cookies.get('user-id') != null){
+function user_fields_dict(field_name, res){
+    if(field_name == 'role'){
+        return res.role;
+    }else if(field_name == 'first_name'){
+        return res.first_name;
+    }else if(field_name == 'last_name'){
+        return res.last_name;
+    }else if(field_name == 'email'){
+        return res.email;
+    }else if(field_name == 'score'){
+        return res.score;
+    }
+}
 
+async function get_user_field(field_name){
+    if (Cookies.get('user-id') != null){
         try{
             const result = await $.ajax({
                 url:'http://localhost:4000/users/'+Cookies.get('user-id'),
@@ -83,8 +96,8 @@ async function get_user_role(){
                     "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY0MDY5MDMxNywiZXhwIjoxNjQxMjk1MTE3fQ.1gIf9c_Yw2Szkh3coNyhJSEuZ_d8HzBdjsDpizGgUHc"
                  },
                 contentType:'application/json',
-                   success: function(res){console.log (res.role)}
-            })
+            }).then((res)=>{ return user_fields_dict(field_name, res)});
+            return result
         } catch (error){ 
             alert(JSON.parse(error.responseText).message);
         }

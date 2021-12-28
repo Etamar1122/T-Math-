@@ -35,3 +35,14 @@ const str = `hello ${username}`
 if (is_logged_in()){
    $('#navmenu').append(str)
 }
+$(window).on('load',async ()=>{
+    var result = await get_user_field('role');
+    console.log('user-role', result)
+    if(window.location.pathnmae = '/forTeacher.html/'){
+        if(await  get_user_field('role') == 'student'){
+            window.location.replace('/index.html');
+        }
+    }
+})
+
+
