@@ -30,11 +30,15 @@ $('#New_question_button').click(function(){
     $('#new_question_form').css('display', 'block')
 })
 
-const username = get_user_field('user_name')
-const str = `hello ${username}`
-if (is_logged_in()){
-   $('#navmenu').append(str)
-}
+$(window).on('load',async ()=>{
+    const username = get_user_field('user_name')
+    const str = `hello ${username}`
+    if (is_logged_in()){
+        $('#user_info').append(str)
+    }
+})
+
+
 $(window).on('load',async ()=>{
     var result = await get_user_field('role');
     console.log('user-role', result)
