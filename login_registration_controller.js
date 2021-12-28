@@ -6,9 +6,6 @@ const login_form = $("#login_form");
 // add get_currect_user func to find a user depends on its cookie key.
 //
 
-async function get_user(user_token){
-
-}
 
 registration_form.on('submit', (e) =>{
     e.preventDefault();
@@ -92,7 +89,7 @@ async function get_user_role(){
             alert(JSON.parse(error.responseText).message);
         }
     }else{
-        alert('user is allready logged in!')
+        alert('user is not logged in!')
     }
 }
 
