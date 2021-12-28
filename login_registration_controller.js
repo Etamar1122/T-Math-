@@ -13,6 +13,7 @@ async function get_user(user_token){
 registration_form.on('submit', (e) =>{
     e.preventDefault();
     register_user();
+    
 })
 
 login_form.on('submit', (e) =>{
@@ -65,6 +66,7 @@ async function user_authentication(){
             .then(res => { 
                     Cookies.set('user-id',res.id);
                     alert('Login successfully.');
+                    window.location.replace('/index.html')
                 })
         } catch (error){ 
             alert(JSON.parse(error.responseText).message);
