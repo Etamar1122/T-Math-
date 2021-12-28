@@ -29,3 +29,15 @@ $('#New_question_button').click(function(){
     console.log('check')
     $('#new_question_form').css('display', 'block')
 })
+
+$(window).on('load',async ()=>{
+    var result = await get_user_field('role');
+    console.log('user-role', result)
+    if(window.location.pathnmae = '/forTeacher.html/'){
+        if(await  get_user_field('role') == 'student'){
+            window.location.replace('/index.html');
+        }
+    }
+})
+
+// console.log('user_role', get_user_role());
