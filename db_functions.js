@@ -14,4 +14,18 @@ async function get_users(){
     }
 }
 
+async function add_Question(data){
+    try{
+        const result = await $.ajax({
+            url:'http://localhost:5500/question/add_question',
+            method: "POST",
+            contentType:'application/json',
+            data: data
+        }).then((res)=>{ return res});
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+}
+
 

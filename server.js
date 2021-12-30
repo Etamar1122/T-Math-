@@ -13,31 +13,24 @@ server.use(express.static(path.join(__dirname,'node_modules')));
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 
-const users_db = 'users'
+const questions_DB = 'questions_DB'
 
 // check documentation for user initiation.
-// server.post('/api/register', async (req, res) => {
-//     const {email, password, first_name, last_name} = req.body
-//     const encryptedpass =await bcrypt.hash(password,10);
+server.post('/question/add_question', async (req, res) => {
+    const {question, answer, mock1, mock2, mock3, hint} = req.body
   
-//     try{  
-//         const existsallready = await sequelize
-//         .query(`SELECT * FROM users WHERE 'email' LIKE 'asdfasdf@a2sdfasdf.com'`)
-//         console.log(existsallready)
-//         if(await existsallready[0] == ''){
-//             const result = await sequelize
-//             .query(`INSERT INTO ${users_db} VALUES(null, '${email}' , '${encryptedpass}'  , '${first_name}' ,'${last_name}')`)
-//             console.log(result);
-//             return res.json({status: 'success', user_id: result[0]});
-//         }else{
-//             return res.json({ status: 'error_email_exists' })
-//         }
+    try{  
+            const result = await sequelize
+            .query(`INSERT INTO ${questions_DB} VALUES(null, '${question}' , '${answer}'  , '${mock1}' ,'${mock2}','${mock3}','${hint}')`)
+            console.log(result);
+            return res.json({status: 'success', question_id: result[0], question: question});
 
-//     }catch (error){
-//         console.log(error)
-//         return res.json({ status: 'error' })
-//     }
-// })
+    }
+    catch (error){
+        console.log(error)
+        return res.json({ status: 'error' })
+    }
+})
 
 // Bcrypt decrypt for user login user for later.
 // "password"; usually stored in the database in the user's row.
