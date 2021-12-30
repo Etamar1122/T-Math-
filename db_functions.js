@@ -22,10 +22,24 @@ async function add_Question(data){
             contentType:'application/json',
             data: data
         }).then((res)=>{ return res});
+        console.log(result);
         return result
     } catch (error){ 
         alert(JSON.parse(error.responseText).message);
     }
 }
 
+async function get_questions(){
+    try{
+        const result = await $.ajax({
+            url:'http://localhost:5500/question/',
+            method: "GET",
+            contentType:'application/json',
+        }).then((res)=>{return await res});
+        console.log('result',result)
+        return result;
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    } // TODO fix the array.
+}
 

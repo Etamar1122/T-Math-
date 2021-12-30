@@ -67,3 +67,4 @@ $('#new_question_form').on('submit', (e)=>{
     })
     add_Question(data);
 })
+
