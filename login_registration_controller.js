@@ -113,24 +113,21 @@ function is_logged_in(){
     return false;
 }
 
-async function get_user_field(field_name){
-    if (Cookies.get('user-id') != null){
+async function get_users(){
         try{
             const result = await $.ajax({
-                url:'http://localhost:4000/users/'+Cookies.get('user-id'),
+                url:'http://localhost:4000/users/',
                 method: "GET",
                  headers: {
                     "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY0MDY5MDMxNywiZXhwIjoxNjQxMjk1MTE3fQ.1gIf9c_Yw2Szkh3coNyhJSEuZ_d8HzBdjsDpizGgUHc"
                  },
                 contentType:'application/json',
-            }).then((res)=>{ return user_fields_dict(field_name, res)});
+            }).then((res)=>{ return  res});
             return result
         } catch (error){ 
             alert(JSON.parse(error.responseText).message);
         }
-    }else{
-        alert('user is not logged in!')
-    }
 }
  // TODO get_users functio for all db user for tables.
  // TODO db for questions. and db functions.
+ 
