@@ -1,8 +1,8 @@
-body::before {
+/* body::before {
     display: block;
     content: '';
     height: 60px;
-  }
+  } */
 
   body {
     height: 100%;
@@ -14,4 +14,6 @@ body::before {
     width: 100%;
   }
 
-  
+  #logo{
+    filter:inver(0.3);
+  }
