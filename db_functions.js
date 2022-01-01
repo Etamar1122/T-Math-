@@ -35,7 +35,7 @@ async function get_questions(){
             url:'http://localhost:5500/question/',
             method: "GET",
             contentType:'application/json',
-        }).then((res)=>{return await res});
+        }).then((res)=>{return res});
         console.log('result',result)
         return result;
     } catch (error){ 
@@ -43,3 +43,20 @@ async function get_questions(){
     } // TODO fix the array.
 }
 
+async function add_feedback(data){
+    try{
+        const result = await $.ajax({
+            url:'http://localhost:5500/feedbacks/',
+            method: "POST",
+            contentType:'application/json',
+            data: data,
+            success: function(){
+                alert('Feedback sent')
+            }
+        }).then((res)=>{ return res});
+        console.log(result);
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+}

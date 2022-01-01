@@ -14,8 +14,9 @@ server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 
 const questions_DB = 'questions_DB'
-
+const feedback_db = 'feedback'
 server.get('/question',get_questions);
+server.post('/feedbacks', post_feedback);
 
 // check documentation for user initiation.
 server.post('/question/add_question', async (req, res) => {
@@ -33,6 +34,7 @@ server.post('/question/add_question', async (req, res) => {
     }
 })
 
+
 async function get_questions(){
     try{
         const result = await sequelize
@@ -44,12 +46,21 @@ async function get_questions(){
         return res.json({ status: 'error' })
     }
 }
-// Bcrypt decrypt for user login user for later.
-// "password"; usually stored in the database in the user's row.
-// var stored_hash = '$2a$10$vxliJ./aXotlnxS9HaJoXeeASt48.ddU7sHNOpXC/cLhgzJGdASCe'
-// bcrypt.compare(guess, stored_hash, function(err, res) {
 
-// });
+async function post_feedback(req,res){
+    const {email, first_name, last_name, feedback} = req.body
+  
+    try{  
+        const result = await sequelize
+        .query(`INSERT INTO ${feedback_db} VALUES(null, '${email}' , '${first_name}'  , '${last_name}' ,'${feedback}')`)
+        console.log(result);
+        return res.json({status: 'success', feedback_id: result[0]});
+    }
+    catch (error){
+        console.log(error)
+        return res.json({ status: 'error', error: error })
+    }
+}
 
 const port = 5500
 server.listen(port, function(){

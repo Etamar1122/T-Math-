@@ -19,9 +19,13 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="index 2.0.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="login_registration_controller.js"></script>
+    <script src="db_functions.js"></script>
     <title>RSES</title>
   </head>
-  <body>
+  <body dir="rtl">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 fixed-top">
       <div class="container">
@@ -64,26 +68,30 @@
     </section>
     
     <!-- Feedback -->
-    <section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-center">
-    <div class = "user-fields">
-        <div class="mb-3 col-lg-3 feedback-input">
-           <label for="exampleFormControlInput1" class="form-label">E-mail :</label>
-           <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-       </div>
-       <div class="mb-3 col-lg-3 feedback-input">
-         <label for="exampleFormControlInput1" class="form-label">First Name :</label>
-         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="First Name">
-       </div>
-       <div class="mb-5 col-lg-3 feedback-input">
-         <label for="exampleFormControlInput1" class="form-label">Last Name :</label>
-         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Last Name">
-       </div>
-    </div>
-     
-    <div class="mb-5 col-lg-6 feedback-input">
-     <label for="exampleFormControlTextarea1" class="form-label">Write your feedback Here :</label>
-     <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-    </div>
+    <section style="margin:0 auto" class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-center ">
+    <form id="students_feedback">
+      <div style ="margin:0 auto; text-align: right;" class = "user-fields">
+          <div  style ="margin:0 auto;" class="mb-3 col-lg-offset-3 col-lg-3 feedback-input">
+            <label for="exampleFormControlInput1" class="form-label">כתובת דוא"ל :</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        </div>
+        <div style ="margin:0 auto;" class="mb-3 col-lg-3 feedback-input">
+          <label for="exampleFormControlInput1" class="form-label">שם פרטי :</label>
+          <input type="text" class="form-control" id="first_name" placeholder="ישראל">
+        </div>
+        <div style ="margin:0 auto;" class="mb-5 col-lg-3 feedback-input">
+          <label for="exampleFormControlInput1" class="form-label">שם משפחה :</label>
+          <input type="text" class="form-control" id="last_name" placeholder="ישראלי">
+        </div>
+      </div>
+      
+      <div style ="margin:0 auto;" class="mb-5 col-lg-6 feedback-input">
+        <label for="exampleFormControlTextarea1" class="form-label">כתבו את חוות הדעת שלכם כאן:</label>
+        <textarea class="form-control" id="feedback" rows="5"></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:20%; height:50px;" type="sumbit">שלח</button>
+
+    </form>
         <section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-center">
          </section>
     </section>
@@ -94,5 +102,6 @@
           <p class="lead">Copyrights &copy; 2021 RSES</p>
         </div>
       </footer>
+      <script src="main.js"></script>
     </body>
   </html>

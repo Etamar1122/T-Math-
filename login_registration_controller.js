@@ -37,7 +37,11 @@ async function register_user(){
                 password,
                 role,
                 score
-            })
+            }),
+            success: function(){
+                alert('register Successfully.')
+                window.location.replace('index.html');
+            }
         })
         .then(res => {JSON.parse(res.responseText).message})
     } catch (error){
@@ -102,7 +106,7 @@ async function get_user_field(field_name){
             alert(JSON.parse(error.responseText).message);
         }
     }else{
-        alert('user is not logged in!')
+        // alert('user is not logged in!')
     }
 }
 

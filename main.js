@@ -30,6 +30,7 @@ $('#New_question_button').click(function(){
     $('#new_question_form').css('display', 'block')
 })
 
+// user hello and disconnect message.
 $(window).on('load',async ()=>{
     const username = get_user_field('user_name')
     const str = `hello ${username}`
@@ -38,7 +39,7 @@ $(window).on('load',async ()=>{
     }
 })
 
-
+// check if user isnt a steacher then redirects.
 $(window).on('load',async ()=>{
     var result = await get_user_field('role');
     console.log('user-role', result)
@@ -49,6 +50,8 @@ $(window).on('load',async ()=>{
     }
 })
 
+
+// submit question to the db
 $('#new_question_form').on('submit', (e)=>{
     e.preventDefault();
     const question = $('#question').val();
@@ -68,3 +71,26 @@ $('#new_question_form').on('submit', (e)=>{
     add_Question(data);
 })
 
+$('#registration_form').on("submit",(e)=>{
+    e.preventDefault();
+    register_user();
+})
+
+$('#students_feedback').on("submit",(e)=>{
+    e.preventDefault();
+    const email = $('#email').val();
+    const first_name = $('#first_name').val();
+    const last_name = $('#last_name').val();
+    const feedback = $('#feedback').val()
+    
+    data = JSON.stringify({
+        email,
+        first_name,
+        last_name,
+        feedback
+    })
+    
+    add_feedback(data);
+    $('#students_feedback').trigger('reset');
+
+})
