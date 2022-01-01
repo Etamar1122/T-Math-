@@ -6,18 +6,22 @@
     <title>Document</title>
     <link rel="stylesheet" href="TheGame_style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js" crossorigin="anonymous"></script>
+    <script src="login_registration_controller.js"></script>
+    <script src="db_functions.js"></script>
 </head>
 <body>
     <div class="container">
         <div id="end" class="flex-center flex-column">
             <h1 id="finalScore">0</h1>
             <form class="end-form-container">
-                <h2 id="end-text">Enter your name below to save your score!</h2>
-                <input type="text" name="name" id="username" placeholder="Enter your name">
-                <button class="btn" id="saveScoreBtn" type="submit" onclick="saveHighScore(event)" disabled>Save</button>
+                <div type="text" name="name" id="username"></div>
+                <h2 id="end-text">לחץ על שמור על מנת לשמור את מהלך המשחק</h2>
+                <button class="btn" id="saveScoreBtn" type="submit" onclick="saveHighScore(event)" >שמור</button>
             </form>
-            <a href="/TheGame_game.html" class="btn">Play Again</a>
-            <a href="/" class="btn">Go Home<i class="fas fa-home"></i></a>
+            <a href="/TheGame_game.html" class="btn">שחק שוב</a>
+            <a href="/" class="btn">חזור לדף הבית<i class="fas fa-home"></i></a>
         </div>
     </div>
     <script src="TheGame_end.js"></script>

@@ -55,18 +55,18 @@ $(window).on('load',async ()=>{
 $('#new_question_form').on('submit', (e)=>{
     e.preventDefault();
     const question = $('#question').val();
-    const right_answer = $('#right_answer').val();
-    const answer2 = $('#answer2').val();
-    const answer3 = $('#answer3').val()
-    const answer4 = $('#answer4').val()
-    const clue = $('#clue').val();
+    const choice1 = $('#right_answer').val();
+    const choice2 = $('#answer2').val();
+    const choice3 = $('#answer3').val()
+    const choice4 = $('#answer4').val()
+    const answer = $('#clue').val();
     data = JSON.stringify({
         question,
-        right_answer,
-        answer2,
-        answer3,
-        answer4,
-        clue
+        choice1,
+        choice2,
+        choice3,
+        choice4,
+        answer
     })
     add_Question(data);
 })
@@ -94,3 +94,4 @@ $('#students_feedback').on("submit",(e)=>{
     $('#students_feedback').trigger('reset');
 
 })
+

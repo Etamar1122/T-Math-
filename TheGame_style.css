@@ -123,6 +123,9 @@ input::placeholder {
     margin-bottom: 3rem;
     width: 100%;
     outline: none;
+    font-size:20px;
+    text-align: center;
+    color:white;
 }
 
 #end-text {

@@ -31,11 +31,15 @@ async function add_Question(data){
 
 async function get_questions(){
     try{
+        console.log('ready')
         const result = await $.ajax({
             url:'http://localhost:5500/question/',
             method: "GET",
             contentType:'application/json',
-        }).then((res)=>{return res});
+            success: (res) => {
+                return res;
+            }
+        })
         console.log('result',result)
         return result;
     } catch (error){ 
@@ -53,6 +57,22 @@ async function add_feedback(data){
             success: function(){
                 alert('Feedback sent')
             }
+        }).then((res)=>{ return res});
+        console.log(result);
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+}
+
+async function update_user_score(data){
+    try{
+        console.log('data',data);
+        const result = await $.ajax({
+            url:'http://localhost:5500/update_score',
+            method: "POST",
+            contentType:'application/json',
+            data: data
         }).then((res)=>{ return res});
         console.log(result);
         return result

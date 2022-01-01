@@ -132,6 +132,5 @@ async function get_users(){
             alert(JSON.parse(error.responseText).message);
         }
 }
- // TODO get_users functio for all db user for tables.
  // TODO db for questions. and db functions.
  

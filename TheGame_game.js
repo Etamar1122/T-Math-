@@ -10,57 +10,26 @@ let score = 0
 let questionCounter = 0
 let availableQuestions = []
 
-let questions = [
+ let questions = 
+[
     {
+        ID: 1,
         question: 'What is 2 + 2 ?',
         choice1: '2',
         choice2: '4',
         choice3: '21',
         choice4: '17',
         answer: 2,
-    },
-    {
-        question:
-            "Describe Hadas as a lecturer :",
-        choice1: "Worst lecturer ever",
-        choice2: "Pretty good",
-        choice3: "Not the best but not so bad",
-        choice4: "Awesome",
-        answer: 1,
-    },
-    {
-        question: "Why college is frustrating ?",
-        choice1: "They think we don't have a life",
-        choice2: "They don't know how to teach",
-        choice3: "All the answers are correct",
-        choice4: "4 years is too much for this shit",
-        answer: 3,
-    },
-    {
-        question: "In RSES, what the 'E' means ?",
-        choice1: "Etamar",
-        choice2: "Shir",
-        choice3: "Shai",
-        choice4: "Ron",
-        answer: 1,
-    },
-    {
-        question: "Who is the best football player ?",
-        choice1: "M'bappe",
-        choice2: "Ronaldo",
-        choice3: "Neymar",
-        choice4: "Messi",
-        answer: 4,
     }
 ]
-
 const SCORE_POINTS = 100
-const MAX_QUESTIONS = 5
+const MAX_QUESTIONS = 15
 
 startGame = () => {
+    get_questions().then( res => res[0].forEach((element)=> {questions.push(element), console.log(element);}));
     questionCounter = 0
     score = 0
-    availableQuestions = [...questions]
+    availableQuestions = questions
     getNewQuestion()
 }
 
