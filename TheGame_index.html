@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>התחלו לשחק</title>
+    <link rel="stylesheet" href="TheGame_style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js" crossorigin="anonymous"></script>
+    <script src="login_registration_controller.js"></script>
+    <script src="db_functions.js"></script>
+
+</head>
+<body>
+    <script>
+        if(!is_logged_in()){
+            alert('אתה חייב להיות מחובר על מנת לשחק');
+            window.location.replace('login_page.html')
+        }
+    </script>
+    <div class="container">
+        <div id="home" class="flex-column flex-center">
+            <h1>Are you Ready?</h1>
+            <a href="/TheGame_game.html" class="btn">Play</a>
+            <a href="/TheGame_highscores.html" id="highscore-btn" class="btn">High Scores<i class="fas fa-crown"></i></a>
+        </div>
+    </div>
+</body>
+</html>

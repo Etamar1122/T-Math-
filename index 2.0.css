@@ -1,6 +1,19 @@
-body::before {
+/* body::before {
     display: block;
     content: '';
     height: 60px;
+  } */
+
+  body {
+    height: 100%;
   }
   
+  .user-fields{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+  }
+
+  #logo{
+    filter:inver(0.3);
+  }

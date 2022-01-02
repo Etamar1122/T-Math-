@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>הרשמה למערכת</title>
+      <link rel="stylesheet" href="registration_page.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+      <script src="login_registration_controller.js"></script>
+      <script src="db_functions.js"></script>
+    </head>
+    <body dir="rtl">       
+        <!-- Registration -->
+        <div class="center">
+            <div class="container">
+                <div class="text">הרשמה למערכת</div>
+                <form id="registration_form">
+                  <div class="data">
+                      <label>שם פרטי</label>
+                      <input id='first_name' type="text" required>
+                    </div>
+                    <div class="data">
+                        <label>שם משפחה</label>
+                        <input id='last_name' type="text" required>
+                    </div>
+                    <div class="data">
+                        <label>כתובת דוא"ל</label>
+                        <input  id='email' type="text" required>
+                    </div>
+                    <div class="data">
+                        <label>סיסמא</label>
+                        <input id="password" type="password" required>
+                </div>
+                <div class="btn">
+                    <div class="inner"></div>
+                    <button id="register_submit_btn"  type="sumbit">הרשמה</button>
+                </div>
+                <div class="login-link">כבר רשום למערכת? <a href="login_page.html">התחבר עכשיו!</a></div>
+            </form>
+        </div>
+    </div>
+    <script src="main.js"></script>
+    </body>
+    </html>
+    
