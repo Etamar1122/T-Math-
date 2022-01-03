@@ -12,10 +12,13 @@ let availableQuestions = []
 
  let questions = []
 const SCORE_POINTS = 100
-const MAX_QUESTIONS = 15
+let MAX_QUESTIONS = 15
 
-startGame = () => {
-    get_questions().then( res => res[0].forEach((element)=> {questions.push(element), console.log(element);}));
+startGame =async () => {
+    await get_questions().then( res => res[0].forEach((element)=> {questions.push(element), console.log(element);}));
+    if (MAX_QUESTIONS > questions.length){
+        MAX_QUESTIONS = questions.length
+    }
     questionCounter = 0
     score = 0
     availableQuestions = questions

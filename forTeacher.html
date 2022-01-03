@@ -23,9 +23,9 @@
       <link rel="stylesheet" href="index 2.0.css" />
       <script src="login_registration_controller.js"></script>
       <script src="db_functions.js"></script>
-    <title>RSES</title>
+    <title>T-math</title>
   </head>
-  <body>
+  <body dir="rtl">
      <!-- Navbar -->
      <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3">
       <div class="container">
@@ -82,6 +82,70 @@
         <button type='submit' class="btn btn-primary" id="registration_submit">שלח</button>
       </form>
    
+   <button id = 'get_questions'>הצג שאלות</button>
+    
+    <table id="questions_table" style="display: none; text-align:center;">
+        <thead>
+          <tr>
+            <th>ID</th>
+          <td>
+          </td>
+            <th>שאלה</th>
+            <td>
+            </td>
+            <td>
+
+            <th>תשובה 1</th>
+          </td> 
+          <td>  
+            <th>תשובה 2</th>
+          </td> 
+          <td> 
+            <th>תשובה 3</th>
+          </td> 
+          <td> 
+            <th>תשובה 4</th>
+          </td> 
+          <td> 
+            <th>תשובה נכונה</th>
+          </td> 
+          <td>
+          </td>
+          <td> 
+            <th>מחק</th>
+          </td>
+        </tr>
+      </thead>
+      <tbody id="questions_body">
+
+      </tbody>
+    </table>
+
+    <button id = 'edit_question'>ערוך שאלות</button>
+    <div id = "edit_questions">
+      <div id = "edit_wrapper" style = "display: none;">
+        <input type='number' placeholder='הכנס מספר שאלה מרשימת השאלות' id = "question_edit_id"/>
+        <button id="edit_preview">חפש</button>
+      </div>
+      <div id="actual_edit_question" style="display: none;text-align: center;">
+        <form id="edit_question_form">
+          <input style = "visibility:hidden;" type="text" id="question_id" placeholder="השאלה"></input>
+          <label for="question_edit" class="form-label">השאלה:</label>
+          <input type="text" id="question_edit" placeholder="השאלה"></input>
+          <label for="right_answer_edit" class="form-label">תשובה:</label>
+          <input type="text" id="right_answer_edit" placeholder="תשובה"></input>
+          <label for="answer2_edit" class="form-label">תשובה 2:</label>
+          <input type="text" id="answer2_edit" placeholder="תשובה 2"></input>
+          <label for="answer3_edit" class="form-label">תשובה 3:</label>
+          <input type="text" id="answer3_edit" placeholder="תשובה 3"></input>
+          <label for="answer4_edit" class="form-label">תשובה 4:</label>
+          <input type="text" id="answer4_edit" placeholder="תשובה 4"></input>
+          <label for="clue_edit" class="form-label">מספר תשובה נכונה:</label>
+          <input type="text" id="clue_edit" placeholder="מספר תשובה נכונה "></input>
+          <button type='submit' class="btn btn-primary" id="registration_submit">שלח</button>
+        </form>
+      </div>
+    </div>
        <!-- Footer -->
        <footer class="p-1 bg-light text-dark text-center position-relative">
            <div class="container">

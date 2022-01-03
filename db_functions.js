@@ -14,6 +14,7 @@ async function get_users(){
     }
 }
 
+
 async function add_Question(data){
     try{
         const result = await $.ajax({
@@ -70,6 +71,55 @@ async function update_user_score(data){
         console.log('data',data);
         const result = await $.ajax({
             url:'http://localhost:5500/update_score',
+            method: "POST",
+            contentType:'application/json',
+            data: data
+        }).then((res)=>{ return res});
+        console.log(result);
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+}
+
+async function delete_question(question_id){
+    try{
+        console.log('data',data);
+        const result = await $.ajax({
+            url:'http://localhost:5500/question/delete_questions',
+            method: "POST",
+            contentType:'application/json',
+            data: question_id
+        }).then((res)=>{ return res});
+        console.log(result);
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+}
+
+async function get_question_by_id(question_id){
+    try{
+        console.log('ID',question_id);
+        const result = await $.ajax({
+            url:'http://localhost:5500/question/get_by_id',
+            method: "POST",
+            contentType:'application/json',
+            data: question_id
+        }).then((res)=>{ return res});
+        console.log(result);
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+}
+
+
+async function update_question(data){
+    try{
+        console.log('data',data);
+        const result = await $.ajax({
+            url:'http://localhost:5500/question/update_question',
             method: "POST",
             contentType:'application/json',
             data: data

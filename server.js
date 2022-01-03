@@ -19,6 +19,9 @@ const feedback_db = 'feedback'
 server.get('/question',get_questions);
 server.post('/feedbacks', post_feedback);
 server.post('/update_score', update_user_score);
+server.post('/question/delete_questions', delete_question);
+server.post('/question/get_by_id', get_question_by_id);
+server.post('/question/update_question', update_question);
 
 // check documentation for user initiation.
 server.post('/question/add_question', async (req, res) => {
@@ -77,6 +80,53 @@ async function update_user_score(req,res){
         return res.json({ status: 'error', error: error })
     }
 }
+
+async function delete_question(req,res){
+    const {ID} = req.body
+    console.log('id',ID)
+    try{  
+        const result = await sequelize
+        .query(`DELETE FROM ${questions_DB} WHERE ID = ${ID};`)
+        console.log(result);
+        return res.json({status: 'success'});
+    }
+    catch (error){
+        console.log(error)
+        return res.json({ status: 'error', error: error })
+    }
+}
+
+async function get_question_by_id(req,res){
+    console.log(req.body)
+    const {question_id} = req.body
+    console.log('id',question_id)
+    try{  
+        const result = await sequelize
+        .query(`SELECT * FROM ${questions_DB} WHERE ID = ${question_id};`)
+        console.log(result);
+        return res.json(result);
+    }
+    catch (error){
+        console.log(error)
+        return res.json({ status: 'error', error: error })
+    }
+}
+
+async function update_question(req,res){
+    const {question_id, question, choice1, choice2, choice3, choice4, answer } = req.body
+    try{  
+        console.log(req.body);
+        const result = await sequelize
+        .query(`UPDATE ${questions_DB} SET question = '${question}', choice1 =  '${choice1}', choice2 = '${choice2}', choice3 = '${choice3}', choice4 = '${choice4}', answer = '${answer}' WHERE id = ${question_id};`)
+        console.log(result);
+        return res.json({status: 'success'});
+    }
+    catch (error){
+        console.log(error)
+        return res.json({ status: 'error', error: error })
+    }
+}
+
 
 const port = 5500
 server.listen(port, function(){
