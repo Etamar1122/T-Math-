@@ -69,6 +69,7 @@ async function post_feedback(){
 async function update_user_score(req,res){
     const {user_id, user_score} = req.body
     console.log('id',user_id)
+    console.log('user_score',user_score)
     try{  
         const result = await sequelize
         .query(`UPDATE users SET score = ${user_score} WHERE id = ${user_id};`)

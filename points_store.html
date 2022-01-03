@@ -29,7 +29,7 @@
     <script src="db_functions.js"></script>
     <title>T-math</title>
   </head>  
-  <body>
+  <body dir="rtl">
     <!-- Navbar -->
     <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark p1">
       <div class="container">
@@ -54,75 +54,75 @@
             <li class="nav-item" id= 'user_info'>
               <a href="#" class="nav-link"></a> 
             </li>
-           
+            
           </ul>
         </div>
       </div>
     </nav>
-
+    
     <!-- Showcase -->
     <section
-      class="bg-dark text-light p-0 p-lg-2 pt-lg-2 text-center text-sm-center"
+    class="bg-dark text-light p-0 p-lg-2 pt-lg-2 text-center text-sm-center"
     >
-      <div class="container">
-        <div class="row align-items-end">
-          <div>
-            <h5><span class="text-warning"> משחק טריוויה אינטראקטיבי לחיזוק היכולות המתמטיות </span></h5>
-          </div>
+    <div class="container">
+      <div class="row align-items-end">
+        <div>
+          <h5><span class="text-warning"> משחק טריוויה אינטראקטיבי לחיזוק היכולות המתמטיות </span></h5>
         </div>
       </div>
-    </section>
-
-    <!-- Boxes -->
-    <section class="p-4">
-        <div class="container">
-          <div class="row text-center g-4">
-            <div class="col-md">
-              <div class="card bg-light text-dark">
-                <div class="card-body text-center">
-                  <div class="h1 mb-4">
-                    <i class="bi bi-gift"></i>
-                  </div>
-                  <h3 class="card-title mb-3">ב-250 נקודות</h3>
-                  <p class="card-text">
-                    ! מגן לטלפון לבחירתך
-                  </p>
-                  <a href="#" class="btn btn-primary">רכישה</a>
-                </div>
+    </div>
+  </section>
+  
+  <!-- Boxes -->
+  <section class="p-4">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-md">
+          <div class="card bg-light text-dark">
+            <div class="card-body text-center">
+              <div class="h1 mb-4">
+                <i class="bi bi-gift"></i>
               </div>
+              <h3 class="card-title mb-3">ב-250 נקודות</h3>
+              <p class="card-text">
+                ! מגן לטלפון לבחירתך
+              </p>
+              <p data-price="250" class="btn buy_btn btn-primary">רכישה</p>
             </div>
-            <div class="col-md">
-              <div class="card bg-dark text-light">
-                <div class="card-body text-center">
-                  <div class="h1 mb-4">
-                    <i class="bi bi-gift"></i>
-                  </div>
-                  <h3 class="card-title mb-3">ב-100 נקודות</h3>
-                  <p class="card-text">
-                    ! תוספת של 2 נקודות לציון הסופי
-                  </p>
-                  <a href="#" class="btn btn-primary">רכישה</a>
-                </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="card bg-dark text-light">
+            <div class="card-body text-center">
+              <div class="h1 mb-4">
+                <i class="bi bi-gift"></i>
               </div>
+              <h3 class="card-title mb-3">ב-100 נקודות</h3>
+              <p class="card-text">
+                ! תוספת של 2 נקודות לציון הסופי
+              </p>
+              <p  data-price="100" class="btn buy_btn btn-primary">רכישה</p>
             </div>
-            <div class="col-md">
-              <div class="card bg-light text-dark">
-                <div class="card-body text-center">
-                  <div class="h1 mb-4">
-                    <i class="bi bi-gift"></i>
-                  </div>
-                  <h3 class="card-title mb-3">ב-50 נקודות</h3>
-                  <p class="card-text">
-                    ! T-Math חולצה של
-                  </p>
-                  <a href="#" class="btn btn-primary">רכישה</a>
-                </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="card bg-light text-dark">
+            <div class="card-body text-center">
+              <div class="h1 mb-4">
+                <i class="bi bi-gift"></i>
               </div>
+              <h3 class="card-title mb-3">ב-50 נקודות</h3>
+              <p class="card-text">
+                ! T-Math חולצה של
+              </p>
+              <p data-price="50" class="btn buy_btn btn-primary">רכישה</p>
+            </div>
+          </div>
             </div>
           </div>
         </div>
       </section>
-
+      
       <section class="p-4">
         <div class="container">
           <div class="row text-center g-4">
@@ -136,7 +136,7 @@
                   <p class="card-text">
                     ! תוספת של 5 נקודות לציון הסופי
                   </p>
-                  <a href="#" class="btn btn-primary">רכישה</a>
+                  <p data-price="1000" class="btn buy_btn btn-primary">רכישה</p>
                 </div>
               </div>
             </div>
@@ -149,8 +149,7 @@
                   <h3 class="card-title mb-3">ב-750 נקודות</h3>
                   <p class="card-text">
                     ! שובר זוגי לסרט בקולנוע
-                  </p>
-                  <a href="#" class="btn btn-primary">רכישה</a>
+                  <p data-price="750" class="btn buy_btn btn-primary">רכישה</p>
                 </div>
               </div>
             </div>
@@ -164,18 +163,19 @@
                   <p class="card-text">
                     ! כדור כדורגל מתנה
                   </p>
-                  <a href="#" class="btn btn-primary">רכישה</a>
+                  <p data-price="500" class="btn buy_btn btn-primary">רכישה</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-    <!-- Footer -->
-    <footer class="p-1 bg-light text-dark text-center position-relative">
+      
+      <!-- Footer -->
+      <footer class="p-1 bg-light text-dark text-center position-relative">
         <div class="container">
           <p class="lead">Copyrights &copy; 2021 RSES</p>
         </div>
       </footer>
+      <script src="main.js"></script>
     </body>

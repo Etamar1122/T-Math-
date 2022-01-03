@@ -209,3 +209,33 @@ $('#edit_question_form').on('submit', (e)=>{
     update_question(data);
     $('#edit_question_form')[0].reset();
 })
+
+
+
+
+$(document).on('click',".buy_btn", async function() {
+    const current_score = await get_user_field('score');
+    let price = $(this).data().price
+    console.log(current_score)
+    const user_id = Cookies.get('user-id');
+
+    if( current_score < price){
+        alert('אין ברשותך מספיק נק על מנת לרכוש את הפרס');
+    }else{
+        let user_score = current_score - price;
+        console.log(user_score)
+        data = JSON.stringify({
+            user_id,
+            user_score,
+        });
+        update_user_score(data).then(async (res)=>{
+            let new_score = await get_user_field('score');
+            if(res.status == 'success')
+                alert(` הפרס נרכש בהצלחה! נשארו לך ${new_score} נקודות`)
+        })
+
+    
+    }
+})
+
+

@@ -76,6 +76,7 @@ async function user_authentication(){
         alert('user is allready logged in!')
     }
 }
+
 function user_fields_dict(field_name, res){
     if(field_name == 'role'){
         return res.role;
