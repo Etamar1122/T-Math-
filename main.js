@@ -39,7 +39,7 @@ $(window).on('load',async ()=>{
     }
 })
 
-// check if user isnt a steacher then redirects.
+// check if user isnt a teacher then redirects.
 $(window).on('load',async ()=>{
     var result = await get_user_field('role');
     console.log('user-role', result)
