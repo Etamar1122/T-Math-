@@ -138,7 +138,7 @@ async function get_users(){
         }
 }
 
- async function register_user_admin(){
+async function register_user_admin(){
     const firstName = $('#first_name_admin').val();
     const lastName = $('#last_name_admin').val();
     const email = $('#email_admin').val();
@@ -160,7 +160,9 @@ async function get_users(){
             }),
             success: function(){
                 alert('register Successfully.')
-                window.location.replace('index.html');
+                $("#get_users").trigger('click')
+                if(window.location.href('/register.html'))
+                    window.location.replace('index.html');
             }
         })
         .then(res => {JSON.parse(res.responseText).message})

@@ -119,24 +119,54 @@
     </table>
  
     <button id = 'add_user'>הוסף משתמש</button>
-
       <div id="add_user_block" style="display: none;text-align: center;">
         <form id="add_user_form">
           <!-- <input style = "visibility:hidden;" type="text" id="question_id" placeholder="שם פרטי"></input>-->
-          <label for="question_edit" class="form-label">שם פרטי:</label> 
-          <input type="text" id="question_edit" placeholder="שם פרטי"></input>
-          <label for="right_answer_edit" class="form-label">שם משפחה:</label>
-          <input type="text" id="right_answer_edit" placeholder="שם משפחה"></input>
-          <label for="answer2_edit" class="form-label">כתובת דואר אלקטרוני:</label>
-          <input type="text" id="answer2_edit" placeholder="Email@example.com"></input>
-          <label for="answer3_edit" class="form-label">סיסמא:</label>
-          <input type="text" id="answer3_edit" placeholder="סיסמא"></input>
-          <label for="answer4_edit" class="form-label">תשובה 4:</label>
-          <input type="text" id="answer4_edit" placeholder="תשובה 4"></input>
-          <label for="clue_edit" class="form-label">מספר תשובה נכונה:</label>
-          <input type="text" id="clue_edit" placeholder="מספר תשובה נכונה "></input>
-          <button type='submit' class="btn btn-primary" id="registration_submit">שלח</button>
+          <label for="first_name_admin" class="form-label">שם פרטי:</label> 
+          <input type="text" id="first_name_admin" placeholder="שם פרטי"></input>
+          <label for="last_name_admin" class="form-label">שם משפחה:</label>
+          <input type="text" id="last_name_admin" placeholder="שם משפחה"></input>
+          <label for="email_admin" class="form-label">כתובת דואר אלקטרוני:</label>
+          <input type="text" id="email_admin" placeholder="Email@example.com"></input>
+          <label for="password_admin" class="form-label">סיסמא:</label>
+          <input type="text" id="password_admin" placeholder="סיסמא"></input>
+          <label for="role_admin" class="form-label">תפקיד:</label>
+          <select name="roles" id="role_admin">
+            <option value="student">תלמיד</option>
+            <option value="teacher">מורה</option>
+            <option value="admin">מנהל</option>
+          </select>
+          <button type='submit' class="btn btn-primary" id="registration_admin_submit">שלח</button>
         </form>
+    </div>
+
+
+    <button id = 'user_update'>ערוך שאלות</button>
+    <div id = "edit_user">
+      <div id = "edit_user_wrapper" style = "display: none;">
+        <input type='number' placeholder='הכנס מספר משתמש' id = "user_update_id"/>
+        <button id="edit_user_preview">חפש</button>
+      </div>
+      <div id="actual_user_edit" style="display: none;text-align: center;">
+        <form id="update_user_form">
+          <input style = "visibility:hidden;" type="text" id="user_id" ></input>
+          <label for="first_name_admin" class="form-label">שם פרטי:</label> 
+          <input type="text" id="first_name_admin_edit" placeholder="שם פרטי"></input>
+          <label for="last_name_admin" class="form-label">שם משפחה:</label>
+          <input type="text" id="last_name_admin_edit" placeholder="שם משפחה"></input>
+          <label for="email_admin" class="form-label">כתובת דואר אלקטרוני:</label>
+          <input type="text" id="email_admin_edit" placeholder="Email@example.com"></input>
+          <label for="password_admin" class="form-label">סיסמא:</label>
+          <input type="text" id="password_admin_edit" placeholder="סיסמא"></input>
+          <label for="role_admin" class="form-label">תפקיד:</label>
+          <select name="roles" id="role_admin_edit">
+            <option value="student">תלמיד</option>
+            <option value="teacher">מורה</option>
+            <option value="admin">מנהל</option>
+          </select>
+          <button type='submit' class="btn btn-primary" id="edit_admin_submit">שלח</button>
+        </form>
+      </div>
     </div>
        <!-- Footer -->
        <footer class="p-1 bg-light text-dark text-center position-relative">
