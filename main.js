@@ -37,8 +37,7 @@ $(window).on('load',async ()=>{
     let username = await get_user_field('first_name')
     if (is_logged_in()){
         $('ul.navbar-nav.ms-auto').append(`<li class="nav-item">
-            <p class = "nav-link">שלום ${username},</p>
-            <a id = "logout" class = "nav-link" > התנתק</a>
+            <p class = "nav-link" id = "logout" class = "nav-link">שלום ${username},  התנתק</p>
         </li>`);
         $('#logout').click(function(){
             console.log('check')
