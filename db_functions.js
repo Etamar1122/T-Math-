@@ -4,7 +4,7 @@ async function get_users(){
             url:'http://localhost:4000/users/',
             method: "GET",
              headers: {
-                "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY0MDY5MDMxNywiZXhwIjoxNjQxMjk1MTE3fQ.1gIf9c_Yw2Szkh3coNyhJSEuZ_d8HzBdjsDpizGgUHc"
+                "Authorization" : `Bearer ${Cookies.get('user-token')}`
              },
             contentType:'application/json',
         }).then((res)=>{ return res});
@@ -74,6 +74,23 @@ async function update_user_score(data){
             method: "POST",
             contentType:'application/json',
             data: data
+        }).then((res)=>{ return res});
+        console.log(result);
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+}
+
+async function delete_user(id){
+    console.log('ID1', id)
+    try{
+        const result = await $.ajax({
+            url:`http://localhost:4000/users/${id}`,
+            headers: {
+                "Authorization" : `Bearer ${Cookies.get('user-token')}`
+            },
+            method: "DELETE"
         }).then((res)=>{ return res});
         console.log(result);
         return result

@@ -32,7 +32,7 @@ $('#New_question_button').click(function(){
 
 // user hello and disconnect message.
 $(window).on('load',async ()=>{
-    const username = get_user_field('user_name')
+    const username = await get_user_field('user_name')
     const str = `hello ${username}`
     if (is_logged_in()){
         $('#user_info').append(str)
@@ -106,7 +106,25 @@ $(document).on("click", ".delete_question", function(){
     const that = $(this).closest(".row-questions")
     let ID = $(this).closest(".row-questions").data().question_id;
     data = JSON.stringify({ID});
-    delete_question(data).then((res)=> {if(res.status == 'success'){ that.fadeOut()}});
+    $.confirm({
+        title: 'למחוק את השאלה?',
+        content: 'בטוחים שאתם רוצים למחוק את השאלה?',
+        buttons: {
+            confirm:{
+            text:'אישור',
+            action: function () {
+                delete_question(data).then((res)=> {if(res.status == 'success'){ that.fadeOut()}});
+                }
+            },
+            cancel:{
+            text:'ביטול',
+            action: function () {
+                return;
+                }
+            },
+        }
+    });
+    // delete_question(data).then((res)=> {if(res.status == 'success'){ that.fadeOut()}});
     
 })
 
@@ -117,33 +135,33 @@ $('#get_questions').click(function(){
     $('#questions_table').css('display', 'block')
     get_questions().then( res => res[0].forEach((element)=> {$("#questions_body").append(`
     <tr data-question_id="${element.ID}" class="row-questions">
-        <th scope="row" class="ID">${element.ID}</th>    
-        <td>
-            <td>${element.question}</td>
-        </td>
-        <td>
-        <td>
-            <td>${element.choice1}</td>
-        </td>
-        <td>
-        </td>
-            <td>${element.choice2}</td>
-        <td>
-        </td>
-            <td>${element.choice3}</td>
-        <td>
-        </td>
-            <td>${element.choice4}</td>
-        <td>
-        </td>
-            <td>${element.answer}</td>
-        <td>
-        </td>
-            <td style='cursor:pointer;' class="delete_question">&times</td>
+    <th scope="row" class="ID">${element.ID}</th>    
+    <td>
+    <td>${element.question}</td>
+    </td>
+    <td>
+    <td>
+    <td>${element.choice1}</td>
+    </td>
+    <td>
+    </td>
+    <td>${element.choice2}</td>
+    <td>
+    </td>
+    <td>${element.choice3}</td>
+    <td>
+    </td>
+    <td>${element.choice4}</td>
+    <td>
+    </td>
+    <td>${element.answer}</td>
+    <td>
+    </td>
+    <td style='cursor:pointer;' class="delete_question">&times</td>
     </tr>
     `
     );          
-    }));
+}));
 })
 
 $(window).ready(()=>{
@@ -218,7 +236,7 @@ $(document).on('click',".buy_btn", async function() {
     let price = $(this).data().price
     console.log(current_score)
     const user_id = Cookies.get('user-id');
-
+    
     if( current_score < price){
         alert('אין ברשותך מספיק נק על מנת לרכוש את הפרס');
     }else{
@@ -231,11 +249,66 @@ $(document).on('click',".buy_btn", async function() {
         update_user_score(data).then(async (res)=>{
             let new_score = await get_user_field('score');
             if(res.status == 'success')
-                alert(` הפרס נרכש בהצלחה! נשארו לך ${new_score} נקודות`)
+            alert(` הפרס נרכש בהצלחה! נשארו לך ${new_score} נקודות`)
         })
-
-    
+        
+        
     }
 })
 
 
+$('#get_users').click(function(){
+    $("#users_table_body").empty();
+    $('#users_table').css('display', 'block')
+    get_users().then( (res) =>{ console.log(res)
+        res.forEach((element)=> {$("#users_table_body").append(`
+        <tr data-user_id="${element.id}" class="row-users">
+        <th scope="row" class="ID">${element.id}</th>    
+        <td>
+        <td>${element.firstName}</td>
+        </td>
+        <td>
+        <td>
+        <td>${element.lastName}</td>
+        </td>
+        <td>
+        </td>
+        <td>${element.email}</td>
+        <td>
+        </td>
+        <td>${element.role}</td>
+        <td>
+        </td>
+        <td style='cursor:pointer;' class="delete_user">&times</td>
+        <td>
+        </td>
+        </tr>
+        `
+        );          
+    })});
+})
+
+
+$(document).on("click", ".delete_user", function(){
+    const that = $(this).closest(".row-users")
+    let ID = that.data().user_id;
+    $.confirm({
+        title: 'למחוק את המשתמש?',
+        content: 'בטוחים שאתם רוצים למחוק את המשתמש?',
+        buttons: {
+            confirm:{
+            text:'אישור',
+            action: function () {
+                delete_user(ID).then((res)=> { if(res.status.includes('success')){ console.log(res.status); that.fadeOut()}});
+                }
+            },
+            cancel:{
+            text:'ביטול',
+            action: function () {
+                return;
+                }
+            },
+        }
+    });
+    // delete_question(data).then((res)=> {if(res.status == 'success'){ that.fadeOut()}});
+})
