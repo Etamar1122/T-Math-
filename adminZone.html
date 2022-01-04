@@ -26,15 +26,18 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha512-zP5W8791v1A6FToy+viyoyUUyjCzx+4K8XZCKzW28AnCoepPNIXecxh9mvGuy3Rt78OzEsU+VCvcObwAMvBAww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css" integrity="sha512-0V10q+b1Iumz67sVDL8LPFZEEavo6H/nBSyghr7mm9JEQkOAm91HNoZQRvQdjennBb/oEuW+8oZHVpIKq+d25g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
-    <title>T-math - For teacher</title>
+    <title>T-math - Admin panel</title>
   </head>
   <body dir="rtl">
-    <!-- Navbar -->
-    <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark p1">
+     <!-- Navbar -->
+     <nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark p1">
       <div class="container">
         <a href="index.html" class="navbar-brand"><img id="logo" src="logo1.png"/></a>
         <div class="collapse navbar-collapse" id="navmenu">
-          <ul class="navbar-nav ms-auto ">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="forTeacher.html" class="nav-link">צוות</a>
+            </li>
             <li class="nav-item">
               <a href="description.html" class="nav-link">אודות</a>
             </li>
@@ -42,16 +45,12 @@
               <a href="feedback 2.0.html" class="nav-link">פידבק</a>
             </li>
             <li class="nav-item">
-              <a href="forTeacher.html" class="nav-link">צוות</a>
-            </li>
-            <li class="nav-item">
               <a href="login_page.html" class="nav-link">התחברות</a>
             </li>
             <li class="nav-item">
               <a href="registration_page.html" class="nav-link">הרשמה</a>
             </li>
-            <li class="nav-item" id= 'user_info'>
-              <a href="#" class="nav-link"></a> 
+            <li class="nav-item" id= 'user_info'> 
             </li>
            
           </ul>
@@ -74,7 +73,7 @@
     </section>
 
     <!--changes-->
-   <button id = 'New_question_button'>שאלה חדשה</button>
+   <!-- <button id = 'New_question_button'>שאלה חדשה</button> -->
     
     <form id="new_question_form" style="display: none;">
         <input type="text" id="question" placeholder=":השאלה "></input>
@@ -86,32 +85,26 @@
         <button type='submit' class="btn btn-primary" id="registration_submit">שלח</button>
       </form>
    
-   <button id = 'get_questions'>הצג שאלות</button>
+   <button id = 'get_users'>הצג משתמשים</button>
     
-    <table id="questions_table" style="display: none; text-align:center;">
+    <table id="users_table" style="display: none; text-align:center;">
         <thead>
           <tr>
             <th>ID</th>
           <td>
           </td>
-            <th>שאלה</th>
+            <th>שם פרטי</th>
             <td>
             </td>
             <td>
 
-            <th>תשובה 1</th>
+            <th>שם משפחה</th>
           </td> 
           <td>  
-            <th>תשובה 2</th>
+            <th>אימייל</th>
           </td> 
           <td> 
-            <th>תשובה 3</th>
-          </td> 
-          <td> 
-            <th>תשובה 4</th>
-          </td> 
-          <td> 
-            <th>תשובה נכונה</th>
+            <th>תפקיד</th>
           </td> 
           <td>
           </td>
@@ -120,35 +113,30 @@
           </td>
         </tr>
       </thead>
-      <tbody id="questions_body">
+      <tbody id="users_table_body">
 
       </tbody>
     </table>
+ 
+    <button id = 'add_user'>הוסף משתמש</button>
 
-    <button id = 'edit_question'>ערוך שאלות</button>
-    <div id = "edit_questions">
-      <div id = "edit_wrapper" style = "display: none;">
-        <input type='number' placeholder='הכנס מספר שאלה מרשימת השאלות' id = "question_edit_id"/>
-        <button id="edit_preview">חפש</button>
-      </div>
-      <div id="actual_edit_question" style="display: none;text-align: center;">
-        <form id="edit_question_form">
-          <input style = "visibility:hidden;" type="text" id="question_id" placeholder="השאלה"></input>
-          <label for="question_edit" class="form-label">השאלה:</label>
-          <input type="text" id="question_edit" placeholder="השאלה"></input>
-          <label for="right_answer_edit" class="form-label">תשובה:</label>
-          <input type="text" id="right_answer_edit" placeholder="תשובה"></input>
-          <label for="answer2_edit" class="form-label">תשובה 2:</label>
-          <input type="text" id="answer2_edit" placeholder="תשובה 2"></input>
-          <label for="answer3_edit" class="form-label">תשובה 3:</label>
-          <input type="text" id="answer3_edit" placeholder="תשובה 3"></input>
+      <div id="add_user_block" style="display: none;text-align: center;">
+        <form id="add_user_form">
+          <!-- <input style = "visibility:hidden;" type="text" id="question_id" placeholder="שם פרטי"></input>-->
+          <label for="question_edit" class="form-label">שם פרטי:</label> 
+          <input type="text" id="question_edit" placeholder="שם פרטי"></input>
+          <label for="right_answer_edit" class="form-label">שם משפחה:</label>
+          <input type="text" id="right_answer_edit" placeholder="שם משפחה"></input>
+          <label for="answer2_edit" class="form-label">כתובת דואר אלקטרוני:</label>
+          <input type="text" id="answer2_edit" placeholder="Email@example.com"></input>
+          <label for="answer3_edit" class="form-label">סיסמא:</label>
+          <input type="text" id="answer3_edit" placeholder="סיסמא"></input>
           <label for="answer4_edit" class="form-label">תשובה 4:</label>
           <input type="text" id="answer4_edit" placeholder="תשובה 4"></input>
           <label for="clue_edit" class="form-label">מספר תשובה נכונה:</label>
           <input type="text" id="clue_edit" placeholder="מספר תשובה נכונה "></input>
           <button type='submit' class="btn btn-primary" id="registration_submit">שלח</button>
         </form>
-      </div>
     </div>
        <!-- Footer -->
        <footer class="p-1 bg-light text-dark text-center position-relative">

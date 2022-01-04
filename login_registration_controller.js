@@ -65,7 +65,9 @@ async function user_authentication(){
                 })
             })
             .then(res => { 
+                    console.log(res);
                     Cookies.set('user-id',res.id);
+                    Cookies.set('user-token',res.token);
                     alert('Login successfully.');
                     window.location.replace('/index.html')
                 })
@@ -93,12 +95,14 @@ function user_fields_dict(field_name, res){
 
 async function get_user_field(field_name){
     if (Cookies.get('user-id') != null){
+        const ID = Cookies.get('user-id');
+        console.log('user-id', ID);
         try{
             const result = await $.ajax({
-                url:'http://localhost:4000/users/'+Cookies.get('user-id'),
+                url:'http://localhost:4000/users/'+ID,
                 method: "GET",
                  headers: {
-                    "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY0MDY5MDMxNywiZXhwIjoxNjQxMjk1MTE3fQ.1gIf9c_Yw2Szkh3coNyhJSEuZ_d8HzBdjsDpizGgUHc"
+                    "Authorization" : `Bearer ${Cookies.get('user-token')}`
                  },
                 contentType:'application/json',
             }).then((res)=>{ return user_fields_dict(field_name, res)});
@@ -124,7 +128,7 @@ async function get_users(){
                 url:'http://localhost:4000/users/',
                 method: "GET",
                  headers: {
-                    "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsImlhdCI6MTY0MDY5MDMxNywiZXhwIjoxNjQxMjk1MTE3fQ.1gIf9c_Yw2Szkh3coNyhJSEuZ_d8HzBdjsDpizGgUHc"
+                    "Authorization" : `Bearer ${Cookies.get('user-token')}`
                  },
                 contentType:'application/json',
             }).then((res)=>{ return  res});
@@ -133,5 +137,34 @@ async function get_users(){
             alert(JSON.parse(error.responseText).message);
         }
 }
- // TODO db for questions. and db functions.
- 
+
+ async function register_user_admin(){
+    const firstName = $('#first_name_admin').val();
+    const lastName = $('#last_name_admin').val();
+    const email = $('#email_admin').val();
+    const password = $('#password_admin').val()
+    const role = $('#role_admin').val();
+    const score = '0';
+    try{
+        const result = await $.ajax({
+            url:'http://localhost:4000/users/register',
+            method: "POST",
+            contentType:'application/json',
+            data: JSON.stringify({
+                firstName,
+                lastName,
+                email,
+                password,
+                role,
+                score
+            }),
+            success: function(){
+                alert('register Successfully.')
+                window.location.replace('index.html');
+            }
+        })
+        .then(res => {JSON.parse(res.responseText).message})
+    } catch (error){
+        alert(JSON.parse(error.responseText).message);
+    }
+}
