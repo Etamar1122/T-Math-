@@ -147,3 +147,38 @@ async function update_question(data){
         alert(JSON.parse(error.responseText).message);
     }
 }
+
+async function get_user_by_id(id){
+    console.log('ID1', id)
+    try{
+        const result = await $.ajax({
+            url:`http://localhost:4000/users/${id}`,
+            headers: {
+                "Authorization" : `Bearer ${Cookies.get('user-token')}`
+            },
+            method: "GET"
+        }).then((res)=>{ return res});
+        console.log(result);
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+}
+
+async function update_user(data){
+    const id = data[7]+data[8];
+    try{
+        const result = await $.ajax({
+            url:`http://localhost:4000/users/${id}`,
+            headers: {
+                "Authorization" : `Bearer ${Cookies.get('user-token')}`
+            },
+            method: "PUT",
+            data: data
+        }).then((res)=>{ return res});
+        console.log('update_user',result);
+        return result
+    } catch (error){ 
+        alert(JSON.parse(error.responseText).message);
+    }
+} // FIX IT

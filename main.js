@@ -30,12 +30,18 @@ $('#New_question_button').click(function(){
     $('#new_question_form').css('display', 'block')
 })
 
+$('#add_user').click(function(){
+    console.log('check')
+    $('#add_user_block').css('display', 'block')
+})
+
 // user hello and disconnect message.
 $(window).on('load',async ()=>{
-    //const username = await get_user_field('user_name')
+    let username = await get_user_field('first_name')
+    console.log(username)
     if (is_logged_in()){
         $('ul.navbar-nav.ms-auto').append(`<li class="nav-item">
-            <p class = "nav-link">רון שלום,
+            <p class = "nav-link">שלום, ${username}
             <a href="forTeacher.html">התנתק</a>
             </p>
         </li>`);
@@ -83,6 +89,11 @@ $('#new_question_form').on('submit', (e)=>{
 $('#registration_form').on("submit",(e)=>{
     e.preventDefault();
     register_user();
+})
+
+$('#add_user_form').on("submit",(e)=>{
+    e.preventDefault();
+    register_user_admin();
 })
 
 $('#students_feedback').on("submit",(e)=>{
@@ -160,7 +171,7 @@ $('#get_questions').click(function(){
     <td>${element.answer}</td>
     <td>
     </td>
-    <td style='cursor:pointer;' class="delete_question">&times</td>
+    <td style='cursor:pointer;' class=" btn btn-secondary delete_question">מחק</td>
     </tr>
     `
     );          
@@ -268,10 +279,10 @@ async function init_result_table(){
             table_id++;
             $('table #results_table_body').append(`
             <tr>
-                <th scope="row">${table_id}</th>
-                <td>${that.firstName}</td>
-                <td>${that.lastName}</td>
-                <td>${that.score}</td>
+            <th scope="row">${table_id}</th>
+            <td>${that.firstName}</td>
+            <td>${that.lastName}</td>
+            <td>${that.score}</td>
             </tr> `)
         })
     })
@@ -305,7 +316,9 @@ $('#get_users').click(function(){
         <td>${element.role}</td>
         <td>
         </td>
-        <td style='cursor:pointer;' class="delete_user">&times</td>
+        <td>
+        </td>
+        <td style='cursor:pointer;' class="delete_user btn btn-secondary">מחק</td>
         <td>
         </td>
         </tr>
@@ -323,18 +336,69 @@ $(document).on("click", ".delete_user", function(){
         content: 'בטוחים שאתם רוצים למחוק את המשתמש?',
         buttons: {
             confirm:{
-            text:'אישור',
-            action: function () {
-                delete_user(ID).then((res)=> { if(res.status.includes('success')){ console.log(res.status); that.fadeOut()}});
+                text:'אישור',
+                action: function () {
+                    delete_user(ID).then((res)=> { if(res.status.includes('success')){ console.log(res.status); that.fadeOut()}});
                 }
             },
             cancel:{
-            text:'ביטול',
-            action: function () {
-                return;
+                text:'ביטול',
+                action: function () {
+                    return;
                 }
             },
         }
     });
     // delete_question(data).then((res)=> {if(res.status == 'success'){ that.fadeOut()}});
+})
+
+$('#update_user_form').on('submit', (e)=>{
+    e.preventDefault();
+    const id = $('#user_update_id').val();
+    const firstName = $('#first_name_admin').val();
+    const lastName = $('#last_name_admin').val();
+    const email = $('#email_admin').val();
+    const password = $('#password_admin').val();
+    const role = $('#role_admin').val()
+    
+    data = JSON.stringify({
+        id,
+        firstName,
+        lastName,
+        email,
+        password,
+        role
+    })
+    console.log(data);
+    update_user(data);
+    $('#update_user_form')[0].reset();
+})
+
+
+$('#user_update').click(function(){
+    $("#edit_user_wrapper").fadeIn();
+})
+
+$('#edit_user_preview').click(function(){
+    if(!$('#user_update_id').val()){
+        alert('יש למלא את שדה מספר המתשמש על מנת להמשיך');
+        return;
+    }
+    const user_id = $("#user_update_id").val();
+    const ID = JSON.stringify({user_id});
+    get_user_by_id(user_id).then(async (result) =>{ 
+        const res = await result;
+        if(result.status != 'error'){
+            $('#actual_user_edit').css('display','block');
+            console.log(res.firstName);
+            setTimeout(()=>{
+                $("#user_id_edit").val(user_id) 
+                $("#first_name_admin_edit").val(res.firstName) 
+                $("#last_name_admin_edit").val(res.lastName) 
+                $("#email_admin_edit").val(res.email) 
+                $("#password_admin_edit").val(res.password) 
+                $("#role_admin_edit").val(res.role) 
+            }, 500);
+        }
+    });
 })
