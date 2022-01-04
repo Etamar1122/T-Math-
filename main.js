@@ -238,4 +238,27 @@ $(document).on('click',".buy_btn", async function() {
     }
 })
 
+async function init_result_table(){
+    var table_id = 0 
+    await get_users().then((users_db)=>{
+        console.log('users_db', users_db)
+        $('#results_table_body').empty()
+        users_db.sort((a,b) => b.score - a.score).slice(0,10).forEach((that)=>{
+            table_id++;
+            $('table #results_table_body').append(`
+            <tr>
+                <th scope="row">${table_id}</th>
+                <td>${that.firstName}</td>
+                <td>${that.lastName}</td>
+                <td>${that.score}</td>
+            </tr> `)
+        })
+    })
+}
+
+if (window.location.pathname == '/ResaultsTable.html')
+{
+    init_result_table();
+}
+
 
