@@ -32,10 +32,18 @@ $('#New_question_button').click(function(){
 
 // user hello and disconnect message.
 $(window).on('load',async ()=>{
+<<<<<<< HEAD
     const username = await get_user_field('user_name')
     const str = `hello ${username}`
+=======
+    //const username = await get_user_field('user_name')
+>>>>>>> f1bbe4daad1e1fff6389632db6fdad5f8ac7fb41
     if (is_logged_in()){
-        $('#user_info').append(str)
+        $('ul.navbar-nav.ms-auto').append(`<li class="nav-item">
+            <p class = "nav-link">רון שלום,
+            <a href="forTeacher.html">התנתק</a>
+            </p>
+        </li>`);
     }
 })
 
@@ -255,6 +263,29 @@ $(document).on('click',".buy_btn", async function() {
         
     }
 })
+
+async function init_result_table(){
+    var table_id = 0 
+    await get_users().then((users_db)=>{
+        console.log('users_db', users_db)
+        $('#results_table_body').empty()
+        users_db.sort((a,b) => b.score - a.score).slice(0,10).forEach((that)=>{
+            table_id++;
+            $('table #results_table_body').append(`
+            <tr>
+                <th scope="row">${table_id}</th>
+                <td>${that.firstName}</td>
+                <td>${that.lastName}</td>
+                <td>${that.score}</td>
+            </tr> `)
+        })
+    })
+}
+
+if (window.location.pathname == '/ResaultsTable.html')
+{
+    init_result_table();
+}
 
 
 $('#get_users').click(function(){

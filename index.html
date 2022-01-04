@@ -27,7 +27,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="login_registration_controller.js"></script>
     <script src="db_functions.js"></script>
-    <script src="main.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js" integrity="sha512-zP5W8791v1A6FToy+viyoyUUyjCzx+4K8XZCKzW28AnCoepPNIXecxh9mvGuy3Rt78OzEsU+VCvcObwAMvBAww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css" integrity="sha512-0V10q+b1Iumz67sVDL8LPFZEEavo6H/nBSyghr7mm9JEQkOAm91HNoZQRvQdjennBb/oEuW+8oZHVpIKq+d25g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>T-math</title>
@@ -40,13 +40,13 @@
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto ">
             <li class="nav-item">
-              <a href="forTeacher.html" class="nav-link">צוות</a>
-            </li>
-            <li class="nav-item">
               <a href="description.html" class="nav-link">אודות</a>
             </li>
             <li class="nav-item">
               <a href="feedback 2.0.html" class="nav-link">פידבק</a>
+            </li>
+            <li class="nav-item">
+              <a href="forTeacher.html" class="nav-link">צוות</a>
             </li>
             <li class="nav-item">
               <a href="login_page.html" class="nav-link">התחברות</a>
@@ -218,13 +218,11 @@
     <section class="bg-dark text-light p-3">
       <div class="container">
         <div class="d-md-flex justify-content-between align-items-center">
-          <button class="btn btn-primary btn-lg-2" type="button">הירשם</button>
-          
-
           <div class="input-group news-input">
+            <h4 class="mb-3 mb-md-0"> הרשמה לניוזלטר שלנו</h4>
             <input type="text" class="form-control" placeholder="הכנס כתובת מייל" />
-            <h5 class="mb-3 mb-md-0"> הרשמה לניוזלטר שלנו</h5>
           </div>
+          <button class="btn btn-primary btn-lg-2" type="button">הירשם</button>
         </div>
       </div>
     </section>
@@ -235,4 +233,5 @@
         <p class="lead">Copyrights &copy; 2021 T-Math</p>
       </div>
     </footer>
+    <script src="main.js"></script>
   </body>
