@@ -1,4 +1,3 @@
-
 $('#home').click(function(){
     console.log('check')
    window.location.replace('index.html')
@@ -30,18 +29,28 @@ $('#New_question_button').click(function(){
     $('#new_question_form').css('display', 'block')
 })
 
+
+
+
 // user hello and disconnect message.
 $(window).on('load',async ()=>{
-    const username = await get_user_field('user_name')
+    let username = await get_user_field('first_name')
     //const username = await get_user_field('user_name')
     if (is_logged_in()){
         $('ul.navbar-nav.ms-auto').append(`<li class="nav-item">
-            <p class = "nav-link">שלום, ${username}
-            <a href="forTeacher.html">התנתק</a>
-            </p>
+            <p class = "nav-link">שלום ${username},</p>
+            <a id = "logout" class = "nav-link" > התנתק</a>
         </li>`);
+        $('#logout').click(function(){
+            console.log('check')
+            Cookies.remove('user-id')
+            Cookies.remove('user-token')
+            window.location.replace('login_page.html')
+        })
     }
 })
+
+
 
 // check if user isnt a teacher then redirects.
 $(window).on('load',async ()=>{
