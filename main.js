@@ -32,12 +32,7 @@ $('#New_question_button').click(function(){
 
 // user hello and disconnect message.
 $(window).on('load',async ()=>{
-<<<<<<< HEAD
-    const username = await get_user_field('user_name')
-    const str = `hello ${username}`
-=======
     //const username = await get_user_field('user_name')
->>>>>>> f1bbe4daad1e1fff6389632db6fdad5f8ac7fb41
     if (is_logged_in()){
         $('ul.navbar-nav.ms-auto').append(`<li class="nav-item">
             <p class = "nav-link">רון שלום,
