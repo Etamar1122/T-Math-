@@ -12,7 +12,7 @@ let availableQuestions = []
 
  let questions = []
 const SCORE_POINTS = 100
-let MAX_QUESTIONS = 15
+let MAX_QUESTIONS = 10
 
 startGame =async () => {
     await get_questions().then( res => res[0].forEach((element)=> {questions.push(element), console.log(element);}));

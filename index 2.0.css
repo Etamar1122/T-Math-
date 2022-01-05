@@ -19,3 +19,70 @@
     width: 70px;
     height:70px;
   }
+
+#forteacher_wrapper{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#table_div{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  max-height: 200px;
+  overflow: scroll;
+}
+
+#new_question{
+  margin-top: 20px;
+}
+
+#get_questions_div{
+  margin-top: 20px;
+}
+
+#edit_questions_div{
+  margin-top: 20px;
+}
+
+#adminZone_wrapper{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#table_wrapper{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+ 
+}
+#users_table{
+  max-height: 200px;
+  overflow: scroll; 
+}
+
+#new_question_block{
+  margin-top: 20px;
+}
+
+#add_user_block_wrapper{
+  margin-top: 20px;
+}
+
+#user_update_block{
+  margin-top: 20px;
+}
+
+.cpanel-btn{
+  margin-top: 20px;
+  width:80%;
+}
+
+#edit_wrapper{
+  margin-top: 20px;
+}
+#logout{
+  cursor: pointer;
+}

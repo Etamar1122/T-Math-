@@ -40,7 +40,7 @@ async function register_user(){
             }),
             success: function(){
                 alert('register Successfully.')
-                window.location.replace('index.html');
+                window.location.replace('login_page.html');
             }
         })
         .then(res => {JSON.parse(res.responseText).message})

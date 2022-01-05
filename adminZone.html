@@ -74,51 +74,50 @@
 
     <!--changes-->
    <!-- <button id = 'New_question_button'>שאלה חדשה</button> -->
-    
-    <form id="new_question_form" style="display: none;">
-        <input type="text" id="question" placeholder=":השאלה "></input>
-        <input type="text" id="right_answer" placeholder="תשובה"></input>
-        <input type="text" id="answer2" placeholder="תשובה 2"></input>
-        <input type="text" id="answer3" placeholder="תשובה 3"></input>
-        <input type="text" id="answer4" placeholder="תשובה 4"></input>
-        <input type="text" id="clue" placeholder=":מספר תשובה נכונה "></input>
-        <button type='submit' class="btn btn-primary" id="registration_submit">שלח</button>
-      </form>
-   
-   <button id = 'get_users'>הצג משתמשים</button>
-    
-    <table id="users_table" style="display: none; text-align:center;">
-        <thead>
-          <tr>
-            <th>ID</th>
-          <td>
-          </td>
-            <th>שם פרטי</th>
-            <td>
-            </td>
-            <td>
+    <div id='adminZone_wrapper'>
 
-            <th>שם משפחה</th>
-          </td> 
-          <td>  
-            <th>אימייל</th>
-          </td> 
-          <td> 
-            <th>תפקיד</th>
-          </td> 
-          <td>
-          </td>
-          <td> 
-            <th>מחק</th>
-          </td>
-        </tr>
-      </thead>
-      <tbody id="users_table_body">
+    
+    <div id="users_table_block">
 
-      </tbody>
-    </table>
- 
-    <button id = 'add_user'>הוסף משתמש</button>
+        <button id = 'get_users' class = "cpanel-btn btn btn-primary">הצג משתמשים</button>
+      <div id ="table_wrapper">
+        
+        <table id="users_table" style="display: none; text-align:center;">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <td>
+              </td>
+              <th>שם פרטי</th>
+              <td>
+              </td>
+              <td>
+                
+                <th>שם משפחה</th>
+              </td> 
+              <td>  
+                <th>אימייל</th>
+              </td> 
+              <td> 
+                <th>תפקיד</th>
+              </td> 
+              <td>
+              </td>
+              <td> 
+                <th>מחק</th>
+              </td>
+            </tr>
+          </thead>
+          <tbody id="users_table_body">
+            
+          </tbody>
+        </table>
+      </div>  
+    </div>
+    
+    <div id = "add_user_block_wrapper">
+
+      <button id = 'add_user' class = "cpanel-btn btn btn-primary">הוסף משתמש</button>
       <div id="add_user_block" style="display: none;text-align: center;">
         <form id="add_user_form">
           <!-- <input style = "visibility:hidden;" type="text" id="question_id" placeholder="שם פרטי"></input>-->
@@ -138,43 +137,47 @@
           </select>
           <button type='submit' class="btn btn-primary" id="registration_admin_submit">שלח</button>
         </form>
-    </div>
-
-
-    <button id = 'user_update'>ערוך שאלות</button>
-    <div id = "edit_user">
-      <div id = "edit_user_wrapper" style = "display: none;">
-        <input type='number' placeholder='הכנס מספר משתמש' id = "user_update_id"/>
-        <button id="edit_user_preview">חפש</button>
-      </div>
-      <div id="actual_user_edit" style="display: none;text-align: center;">
-        <form id="update_user_form">
-          <input style = "visibility:hidden;" type="text" id="user_id" ></input>
-          <label for="first_name_admin" class="form-label">שם פרטי:</label> 
-          <input type="text" id="first_name_admin_edit" placeholder="שם פרטי"></input>
-          <label for="last_name_admin" class="form-label">שם משפחה:</label>
-          <input type="text" id="last_name_admin_edit" placeholder="שם משפחה"></input>
-          <label for="email_admin" class="form-label">כתובת דואר אלקטרוני:</label>
-          <input type="text" id="email_admin_edit" placeholder="Email@example.com"></input>
-          <label for="password_admin" class="form-label">סיסמא:</label>
-          <input type="text" id="password_admin_edit" placeholder="סיסמא"></input>
-          <label for="role_admin" class="form-label">תפקיד:</label>
-          <select name="roles" id="role_admin_edit">
-            <option value="student">תלמיד</option>
-            <option value="teacher">מורה</option>
-            <option value="admin">מנהל</option>
-          </select>
-          <button type='submit' class="btn btn-primary" id="edit_admin_submit">שלח</button>
-        </form>
       </div>
     </div>
-       <!-- Footer -->
-       <footer class="p-1 bg-light text-dark text-center position-relative">
-           <div class="container">
-             <p class="lead">Copyrights &copy; 2021 RSES</p>
-           </div>
-         </footer>
-         <script src="main.js"></script>
-       </body>
+      
+    <div id = 'user_update_block'>
 
-     </html>
+      <button id = 'user_update' class = "btn btn-primary cpanel-btn">ערוך משתמש</button>
+      <div id = "edit_user">
+        <div id = "edit_user_wrapper" style = "display: none;">
+          <input type='number' placeholder='הכנס מספר משתמש' id = "user_update_id"/>
+          <button  class = "btn primary-btn" id="edit_user_preview">חפש</button>
+        </div>
+        <div id="actual_user_edit" style="display: none;text-align: center;">
+          <form id="update_user_form">
+            <input style = "visibility:hidden;" type="text" id="user_id" ></input>
+            <label for="first_name_admin" class="form-label">שם פרטי:</label> 
+            <input type="text" id="first_name_admin_edit" placeholder="שם פרטי"></input>
+            <label for="last_name_admin" class="form-label">שם משפחה:</label>
+            <input type="text" id="last_name_admin_edit" placeholder="שם משפחה"></input>
+            <label for="email_admin" class="form-label">כתובת דואר אלקטרוני:</label>
+            <input type="text" id="email_admin_edit" placeholder="Email@example.com"></input>
+            <label for="password_admin" class="form-label">סיסמא:</label>
+            <input type="text" id="password_admin_edit" placeholder="סיסמא"></input>
+            <label for="role_admin" class="form-label">תפקיד:</label>
+            <select name="roles" id="role_admin_edit">
+              <option value="student">תלמיד</option>
+              <option value="teacher">מורה</option>
+              <option value="admin">מנהל</option>
+            </select>
+            <button type='submit' class="btn btn-primary" id="edit_admin_submit">שלח</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>  
+    <!-- Footer -->
+    <footer class="p-1 bg-light text-dark text-center position-relative">
+              <div class="container">
+                <p class="lead">Copyrights &copy; 2021 RSES</p>
+              </div>
+            </footer>
+            <script src="main.js"></script>
+          </body>
+          
+          </html>

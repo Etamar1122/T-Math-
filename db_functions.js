@@ -1,16 +1,17 @@
 async function get_users(){
+    token = Cookies.get('user-token')
     try{
         const result = await $.ajax({
             url:'http://localhost:4000/users/',
             method: "GET",
              headers: {
-                "Authorization" : `Bearer ${Cookies.get('user-token')}`
+                "Authorization" : "Bearer " + token
              },
             contentType:'application/json',
         }).then((res)=>{ return res});
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
+        alert(error.responseText);
     }
 }
 
@@ -150,11 +151,12 @@ async function update_question(data){
 
 async function get_user_by_id(id){
     console.log('ID1', id)
+    token = Cookies.get('user-token')
     try{
         const result = await $.ajax({
             url:`http://localhost:4000/users/${id}`,
             headers: {
-                "Authorization" : `Bearer ${Cookies.get('user-token')}`
+                "Authorization" : "Bearer " + token
             },
             method: "GET"
         }).then((res)=>{ return res});

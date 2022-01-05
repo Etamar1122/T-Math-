@@ -37,7 +37,7 @@ $(window).on('load',async ()=>{
     let username = await get_user_field('first_name')
     if (is_logged_in()){
         $('ul.navbar-nav.ms-auto').append(`<li class="nav-item">
-            <p class = "nav-link" id = "logout" class = "nav-link">שלום ${username},  התנתק</p>
+            <p class = "nav-link">שלום ${username}, <a class = 'link' id = "logout">התנתק</a></p>
         </li>`);
         $('#logout').click(function(){
             console.log('check')
@@ -55,9 +55,23 @@ $(window).on('load',async ()=>{
     var result = await get_user_field('role');
     console.log('user-role', result)
     // if(window.location.pathnmae == '/forTeacher.html/'){
-        if(result == 'teacher'){
+        if(result == 'teacher' || result == 'admin' ){
             $('ul.navbar-nav.ms-auto').append(`<li class="nav-item">
             <a href="forTeacher.html" class="nav-link">אזור צוות</a>
+            </li>`);
+        }
+        // if(result == 'student'){
+        //     window.location.replace('/index.html');
+        // }
+    // }
+})
+$(window).on('load',async ()=>{
+    var result = await get_user_field('role');
+    console.log('user-role', result)
+    // if(window.location.pathnmae == '/forTeacher.html/'){
+        if(result == 'admin'){
+            $('ul.navbar-nav.ms-auto').append(`<li class="nav-item">
+            <a href="adminZone.html" class="nav-link">אזור מנהל</a>
             </li>`);
         }
         // if(result == 'student'){
@@ -96,6 +110,10 @@ $('#registration_form').on("submit",(e)=>{
 $('#add_user_form').on("submit",(e)=>{
     e.preventDefault();
     register_user_admin();
+})
+
+$('#add_user').on("click",()=>{
+   $("#add_user_block").css('display','block');
 })
 
 $('#students_feedback').on("submit",(e)=>{
@@ -272,6 +290,7 @@ $(document).on('click',".buy_btn", async function() {
     }
 })
 
+// initiate result table from user DB
 async function init_result_table(){
     var table_id = 0 
     await get_users().then((users_db)=>{
@@ -295,7 +314,7 @@ if (window.location.pathname == '/ResaultsTable.html')
     init_result_table();
 }
 
-
+// Get users for admin page table.
 $('#get_users').click(function(){
     $("#users_table_body").empty();
     $('#users_table').css('display', 'block')
@@ -329,7 +348,7 @@ $('#get_users').click(function(){
     })});
 })
 
-
+// delete user on click event.
 $(document).on("click", ".delete_user", function(){
     const that = $(this).closest(".row-users")
     let ID = that.data().user_id;
@@ -340,7 +359,7 @@ $(document).on("click", ".delete_user", function(){
             confirm:{
                 text:'אישור',
                 action: function () {
-                    delete_user(ID).then((res)=> { if(res.status.includes('success')){ console.log(res.status); that.fadeOut()}});
+                    delete_user(ID).then(async (res)=> { if( await res.status != 'error'){ console.log(res.status); that.fadeOut()}});
                 }
             },
             cancel:{
@@ -354,6 +373,7 @@ $(document).on("click", ".delete_user", function(){
     // delete_question(data).then((res)=> {if(res.status == 'success'){ that.fadeOut()}});
 })
 
+// update user on submit event
 $('#update_user_form').on('submit', (e)=>{
     e.preventDefault();
     const id = $('#user_update_id').val();
@@ -381,6 +401,7 @@ $('#user_update').click(function(){
     $("#edit_user_wrapper").fadeIn();
 })
 
+// edit user event listener
 $('#edit_user_preview').click(function(){
     if(!$('#user_update_id').val()){
         alert('יש למלא את שדה מספר המתשמש על מנת להמשיך');
