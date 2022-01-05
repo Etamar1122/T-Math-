@@ -2,10 +2,6 @@
 
 const registration_form = $("#registration_form");
 const login_form = $("#login_form");
-// TODO:
-// add get_currect_user func to find a user depends on its cookie key.
-//
-
 
 registration_form.on('submit', (e) =>{
     e.preventDefault();
@@ -170,3 +166,5 @@ async function register_user_admin(){
         alert(JSON.parse(error.responseText).message);
     }
 }
+
+module.exports = { is_logged_in ,get_users, register_user_admin, get_user_field, user_fields_dict, user_authentication, register_user, get_user_by_id, update_question, get_question_by_id, delete_question  }

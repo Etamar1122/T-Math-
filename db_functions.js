@@ -1,17 +1,19 @@
+
+
 async function get_users(){
     token = Cookies.get('user-token')
     try{
         const result = await $.ajax({
             url:'http://localhost:4000/users/',
             method: "GET",
-             headers: {
+            headers: {
                 "Authorization" : "Bearer " + token
-             },
+            },
             contentType:'application/json',
         }).then((res)=>{ return res});
         return result
     } catch (error){ 
-        alert(error.responseText);
+        console.log(error.responseText);
     }
 }
 
@@ -27,7 +29,7 @@ async function add_Question(data){
         console.log(result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
+        return error.status;
     }
 }
 
@@ -45,7 +47,8 @@ async function get_questions(){
         console.log('result',result)
         return result;
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
+        console.log('yaaa')
+        return error.status;
     } // TODO fix the array.
 }
 
@@ -63,7 +66,7 @@ async function add_feedback(data){
         console.log(result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
+        console.log(error.status);
     }
 }
 
@@ -79,7 +82,7 @@ async function update_user_score(data){
         console.log(result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
+        return error.status;
     }
 }
 
@@ -96,8 +99,7 @@ async function delete_user(id){
         console.log(result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
-    }
+        return error.status    }
 }
 
 async function delete_question(question_id){
@@ -112,8 +114,7 @@ async function delete_question(question_id){
         console.log(result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
-    }
+        return error.status    }
 }
 
 async function get_question_by_id(question_id){
@@ -128,8 +129,7 @@ async function get_question_by_id(question_id){
         console.log(result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
-    }
+        return error.status    }
 }
 
 
@@ -145,8 +145,7 @@ async function update_question(data){
         console.log(result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
-    }
+        return error.status    }
 }
 
 async function get_user_by_id(id){
@@ -163,8 +162,7 @@ async function get_user_by_id(id){
         console.log(result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
-    }
+        return error.status    }
 }
 
 async function update_user(data){
@@ -181,6 +179,8 @@ async function update_user(data){
         console.log('update_user',result);
         return result
     } catch (error){ 
-        alert(JSON.parse(error.responseText).message);
+        return error.status
     }
-} // FIX IT
+} 
+
+module.exports = { delete_user ,get_users, add_Question, get_questions, add_feedback, update_user_score, update_user, get_user_by_id, update_question, get_question_by_id, delete_question  }
