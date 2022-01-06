@@ -7,7 +7,7 @@
     <p>Final version is here! </p>
     <br>
     <p>To install depencies and run server, go to the terminal at T-math folder and type 'npm install', then cd login-api and type 'npm install' then the question and users db is ready to use! </p>
-    <p>for a start go on and register to the site, the default settings is to be registerd as a student, for further option go to the DB and change your account to admin or techer. then the Teacher/Admin/both menus will appear at the nav-bar and you will be ready to delete,add or remove users/questions depends on your speccific rule.</p> <br>
+    <p>for a start go on and register to the site, the default settings is to be registerd as a student, for further option go to the DB and change your account to admin or techer. then the Teacher/Admin/both menus will appear at the nav-bar and you will be ready to delete,add or remove users/questions depends on your specific rule.</p> <br>
     <p>As a student the goal is to earn enough score so you can purchase prizes from the site prize store.</p>
 
   <h2> Summry </h2>
